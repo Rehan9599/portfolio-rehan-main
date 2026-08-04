@@ -1,0 +1,8 @@
+/* Optimistic UI · Accordion — colours from tokens.css */
+.o-accordion { border: 1px solid var(--border); border-radius: var(--radius-10); overflow: hidden; font-family: var(--font-sans); }
+.o-accordion__item + .o-accordion__item { border-top: 1px solid var(--border); }
+.o-accordion__head { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); padding: var(--space-3) var(--space-4); background: transparent; border: 0; color: var(--text); font-size: 0.9rem; font-weight: 500; text-align: left; cursor: pointer; }
+.o-accordion__head:hover { background: var(--surface-raised); }
+.o-accordion__chev { width: 15px; height: 15px; color: var(--text-muted); transition: transform .18s; }
+.o-accordion__item--open .o-accordion__chev { transform: rotate(180deg); }
+.o-accordion__body { padding: 0 var(--space-4) var(--space-4); font-size: 0.86rem; line-height: 1.55; color: var(--text-secondary); }

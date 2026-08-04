@@ -1,0 +1,5 @@
+/* Optimistic UI · Progress — colours from tokens.css */
+.o-progress { width: 100%; height: 6px; background: var(--surface-chip); border-radius: var(--radius-full); overflow: hidden; }
+.o-progress__bar { height: 100%; background: var(--accent); border-radius: inherit; transition: width .3s ease; }
+.o-progress--indeterminate .o-progress__bar { width: 40%; animation: o-progress 1.1s ease-in-out infinite; }
+@keyframes o-progress { 0% { margin-left: -40%; } 100% { margin-left: 100%; } }

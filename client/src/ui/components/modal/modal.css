@@ -1,0 +1,12 @@
+/* Optimistic UI · Modal — colours from tokens.css */
+.o-modal { position: fixed; inset: 0; z-index: 1400; display: grid; place-items: center; padding: var(--space-4); font-family: var(--font-sans); }
+.o-modal__backdrop { position: absolute; inset: 0; background: rgba(0,0,0,.6); animation: o-fade .16s ease; }
+.o-modal__panel { position: relative; width: 100%; max-width: 480px; background: var(--surface-overlay); border: 1px solid var(--border-strong); border-radius: var(--radius-16); box-shadow: var(--shadow-3); animation: o-modal-in .18s ease; }
+.o-modal__head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); padding: var(--space-4) var(--space-5); border-bottom: 1px solid var(--border); }
+.o-modal__title { font-size: 1rem; font-weight: 600; color: var(--text); }
+.o-modal__close { border: 0; background: transparent; color: var(--text-muted); font-size: 1.3rem; line-height: 1; cursor: pointer; }
+.o-modal__close:hover { color: var(--text); }
+.o-modal__body { padding: var(--space-5); color: var(--text-secondary); font-size: 0.9rem; line-height: 1.55; }
+.o-modal__footer { display: flex; justify-content: flex-end; gap: var(--space-2); padding: var(--space-4) var(--space-5); border-top: 1px solid var(--border); }
+@keyframes o-fade { from { opacity: 0; } }
+@keyframes o-modal-in { from { opacity: 0; transform: translateY(8px) scale(.98); } }

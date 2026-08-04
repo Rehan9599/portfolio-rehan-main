@@ -1,0 +1,7 @@
+/* Optimistic UI · Pagination — colours from tokens.css */
+.o-page { display: inline-flex; align-items: center; gap: var(--space-1); font-family: var(--font-sans); }
+.o-page__btn { min-width: 30px; height: 30px; padding: 0 var(--space-2); background: transparent; color: var(--text-secondary); border: 1px solid transparent; border-radius: var(--radius-6); font-size: 0.82rem; cursor: pointer; transition: background .15s, color .15s; }
+.o-page__btn:hover:not(:disabled) { color: var(--text); background: var(--surface-chip); }
+.o-page__btn:disabled { opacity: .4; cursor: default; }
+.o-page__btn--active { background: var(--surface-chip); color: var(--text); border-color: var(--border-strong); }
+.o-page__gap { color: var(--text-muted); padding: 0 2px; }

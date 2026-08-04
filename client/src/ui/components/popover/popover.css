@@ -1,0 +1,7 @@
+/* Optimistic UI · Popover — colours from tokens.css */
+.o-popover { position: relative; display: inline-flex; }
+.o-popover__scrim { position: fixed; inset: 0; z-index: 1490; }
+.o-popover__panel { position: absolute; top: calc(100% + 6px); z-index: 1500; min-width: 180px; background: var(--surface-overlay); border: 1px solid var(--border-strong); border-radius: var(--radius-10); box-shadow: var(--shadow-2); padding: var(--space-2); font-family: var(--font-sans); animation: o-pop .14s ease; }
+.o-popover__panel--start { left: 0; }
+.o-popover__panel--end { right: 0; }
+@keyframes o-pop { from { opacity: 0; transform: translateY(-4px); } }

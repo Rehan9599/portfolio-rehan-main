@@ -1,0 +1,43 @@
+/* Optimistic UI · Chart · colours come from tokens.css */
+.o-chart { font-family: var(--font-sans); color: var(--text); width: 100%; }
+.o-chart svg { display: block; overflow: visible; }
+
+.o-chart__gridline { stroke: var(--border-subtle); stroke-width: 1; }
+.o-chart__guide { stroke: var(--border-strong); stroke-width: 1; stroke-dasharray: 3 3; }
+.o-chart__axis { fill: var(--text-muted); font-family: var(--font-mono); font-size: 10px; letter-spacing: .02em; }
+.o-chart__line { fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.o-chart__dot { transition: r .12s ease; }
+
+/* tooltip */
+.o-chart__tip {
+  position: absolute; z-index: 5; transform: translate(-50%, calc(-100% - 12px)); pointer-events: none;
+  min-width: 120px; padding: 8px 10px; border-radius: var(--radius-8);
+  background: var(--surface-overlay); border: 1px solid var(--border-strong); box-shadow: var(--shadow-2);
+  font-size: 0.74rem; color: var(--text);
+}
+.o-chart__tipHead { font-weight: 600; margin-bottom: 6px; color: var(--text); }
+.o-chart__tipRow { display: flex; align-items: center; gap: 7px; line-height: 1.7; }
+.o-chart__tipRow span:nth-child(2) { color: var(--text-secondary); }
+.o-chart__tipRow b { margin-left: auto; font-variant-numeric: tabular-nums; color: var(--text); }
+.o-chart__tipDot { width: 8px; height: 8px; border-radius: 50%; flex: none; }
+
+/* legend */
+.o-chart__legend { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 12px; }
+.o-chart__legItem {
+  display: inline-flex; align-items: center; gap: 7px; border: 0; background: none; cursor: pointer;
+  font-family: var(--font-sans); font-size: 0.78rem; color: var(--text-secondary); padding: 0;
+}
+.o-chart__legItem:hover { color: var(--text); }
+.o-chart__legItem.is-off { opacity: 0.42; }
+.o-chart__legItem.is-off .o-chart__legDot { filter: grayscale(1); }
+.o-chart__legDot { width: 10px; height: 10px; border-radius: 3px; flex: none; }
+
+/* donut */
+.o-donut { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; font-family: var(--font-sans); color: var(--text); }
+.o-donut__ring { position: relative; flex: none; }
+.o-donut__center { position: absolute; inset: 0; display: grid; place-items: center; font-size: 1.15rem; font-weight: 700; color: var(--text); }
+.o-donut__legend { display: flex; flex-direction: column; gap: 10px; min-width: 160px; }
+.o-donut__legItem { display: flex; align-items: center; gap: 9px; font-size: 0.82rem; color: var(--text-secondary); }
+.o-donut__legLabel { color: var(--text); }
+.o-donut__legItem b { margin-left: auto; color: var(--text); font-variant-numeric: tabular-nums; }
+.o-donut__legPct { color: var(--text-muted); font-variant-numeric: tabular-nums; width: 34px; text-align: right; }

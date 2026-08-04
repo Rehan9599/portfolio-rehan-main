@@ -1,0 +1,151 @@
+/* ============================================================
+   Optimistic — Design Tokens
+   Edit any value below; everything downstream updates.
+   Layered Core → Semantic → Theme, per the design system.
+   ============================================================ */
+
+:root {
+  /* ── 1 · CORE — raw ramps (change the brand here) ──────────── */
+
+  /* Carbon — neutral, the field */
+  --carbon-50:  #F4F5F6;
+  --carbon-100: #E7E9EE;
+  --carbon-200: #CFD3DA;
+  --carbon-300: #9AA0A8;
+  --carbon-400: #767B87;
+  --carbon-500: #565A62;
+  --carbon-600: #33343C;
+  --carbon-700: #24252B;
+  --carbon-800: #1C1C1E;
+  --carbon-850: #16171B;
+  --carbon-900: #0E0F12;
+  --carbon-950: #0B0B0B;
+
+  /* Ember — warm brand */
+  --ember-50:  #FFF3E9;
+  --ember-100: #FFE1C6;
+  --ember-200: #FFC593;
+  --ember-300: #FFA455;
+  --ember-400: #FF8A24;
+  --ember-500: #FF7A00;
+  --ember-600: #E96E00;
+  --ember-700: #C05B00;
+  --ember-800: #7C3C02;
+  --ember-900: #40230A;
+  --ember-ink: #1A0E04;   /* label on ember fills (7.25:1) */
+
+  /* Emerald · Scarlet · Amber · Cobalt — feedback + info */
+  --emerald-500: #1FA35C;  --emerald-300: #4FCE8B;  --emerald-200: #8FD9B2;  --emerald-700: #126B3D;
+  --scarlet-500: #EB4A4F;  --scarlet-300: #F2777B;  --scarlet-200: #F29A9D;  --scarlet-700: #A5262A;
+  --amber-500:   #FFB020;  --amber-300:   #FFC457;  --amber-200:   #FFD37A;  --amber-700:   #B37200;
+  --cobalt-500:  #3E63DD;  --cobalt-300:  #6B8AFF;  --cobalt-200:  #9DB0F3;  --cobalt-700:  #273F92;
+
+  /* Element — categorical colours for charts / graphics */
+  --element-1:  #FF7A00; --element-2:  #5B8CFF; --element-3:  #3FC98A; --element-4: #FFC457; --element-5:  #A78BFA;
+  --element-6:  #34D3C0; --element-7:  #F2777B; --element-8:  #EF8FD0; --element-9: #A9D96B; --element-10: #9AA0A8;
+
+  /* ── 2 · SEMANTIC — roles (components read these) ──────────── */
+
+  /* surface */
+  --surface:         var(--carbon-950);
+  --surface-raised:  var(--carbon-900);
+  --surface-sunken:  #101114;
+  --surface-overlay: #141519;
+  --surface-chip:    var(--carbon-800);
+
+  /* text */
+  --text:           var(--carbon-50);
+  --text-secondary: var(--carbon-300);
+  --text-muted:     var(--carbon-400);
+  --text-faint:     var(--carbon-500);
+
+  /* border */
+  --border:        #1E1E1E;
+  --border-strong: var(--carbon-600);
+  --border-subtle: #17181C;
+  --border-focus:  var(--ember-500);
+
+  /* accent — the one brand colour (swapped per theme) */
+  --accent:         var(--ember-500);
+  --accent-hover:   var(--ember-600);
+  --accent-surface: #20160B;
+  --accent-border:  #5C3410;
+  --on-accent:      var(--ember-ink);
+
+  /* feedback: solid · icon · text · surface · border */
+  --success-solid: var(--emerald-500); --success-icon: var(--emerald-300); --success-text: var(--emerald-200); --success-surface: #0F1A14; --success-border: #1C5A3A;
+  --danger-solid:  var(--scarlet-500); --danger-icon:  var(--scarlet-300); --danger-text:  var(--scarlet-200); --danger-surface:  #1C1113; --danger-border:  #6A2A2C;
+  --warning-solid: var(--amber-500);   --warning-icon: var(--amber-300);   --warning-text: var(--amber-200);   --warning-surface: #1C1710; --warning-border: #6A5220;
+  --info-solid:    var(--cobalt-500);  --info-icon:    var(--cobalt-300);  --info-text:    var(--cobalt-200);  --info-surface:    #111420; --info-border:    #2C3A6A;
+
+  /* ── Spacing — 4px base ───────────────────────────────────── */
+  --space-1: 4px;  --space-2: 8px;  --space-3: 12px; --space-4: 16px; --space-5: 20px;
+  --space-6: 24px; --space-8: 32px; --space-10: 40px; --space-12: 48px; --space-16: 64px; --space-20: 80px;
+
+  /* ── Radius ───────────────────────────────────────────────── */
+  --radius-0: 0;    --radius-2: 2px;  --radius-6: 6px;  --radius-8: 8px;
+  --radius-10: 10px; --radius-12: 12px; --radius-16: 16px; --radius-full: 999px;
+
+  /* ── Elevation ────────────────────────────────────────────── */
+  --shadow-1: 0 1px 2px rgba(0,0,0,.35);
+  --shadow-2: 0 8px 24px rgba(0,0,0,.42);
+  --shadow-3: 0 16px 40px rgba(0,0,0,.5);
+  --shadow-focus: 0 0 0 3px rgba(255,122,0,.14);
+
+  /* ── Type ─────────────────────────────────────────────────── */
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* ── Layout ───────────────────────────────────────────────── */
+  --container-max: 1320px;
+  --bp-tablet: 768px;
+  --bp-web: 1024px;
+}
+
+/* ── 3 · THEME — light mode (flip the field, keep the ember) ─
+   Add data-theme="daylight" on <html> for the light theme.     */
+[data-theme="daylight"] {
+  /* surface */
+  --surface:         #FFFFFF;
+  --surface-raised:  #F7F8FA;
+  --surface-sunken:  #F0F2F5;
+  --surface-overlay: #FFFFFF;
+  --surface-chip:    #EEF0F3;
+
+  /* text */
+  --text:           #16171B;
+  --text-secondary: #565A62;
+  --text-muted:     #767B87;
+  --text-faint:     #9AA0A8;
+
+  /* border */
+  --border:        #E7E9EE;
+  --border-strong: #CFD3DA;
+  --border-subtle: #F0F2F5;
+
+  /* accent stays ember; only its tints change for a light field */
+  --accent-surface: #FFF3E9;
+  --accent-border:  #FFD0A3;
+
+  /* feedback tints for a light field */
+  --success-text: #126B3D; --success-surface: #EAF7F0; --success-border: #B7E3C9;
+  --danger-text:  #A5262A; --danger-surface:  #FDECEC; --danger-border:  #F5C2C4;
+  --warning-text: #8A5A00; --warning-surface: #FFF6E5; --warning-border: #FFE0A3;
+  --info-text:    #273F92; --info-surface:    #EDF1FD; --info-border:    #C3D0F7;
+
+  /* softer shadows on white */
+  --shadow-1: 0 1px 2px rgba(16,24,40,.08);
+  --shadow-2: 0 8px 24px rgba(16,24,40,.12);
+  --shadow-3: 0 16px 40px rgba(16,24,40,.16);
+}
+
+/* ── Product theme — override the accent (and anything else) ──
+   Add data-theme="harbor" on <html> to switch. Copy this block
+   and change the values to make your own product theme.        */
+[data-theme="harbor"] {
+  --accent:       var(--cobalt-500);
+  --accent-hover: var(--cobalt-700);
+  --on-accent:    #ffffff;
+  --border-focus: var(--cobalt-500);
+  --shadow-focus: 0 0 0 3px rgba(62,99,221,.18);
+}

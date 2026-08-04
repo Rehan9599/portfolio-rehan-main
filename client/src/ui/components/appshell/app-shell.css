@@ -1,0 +1,7 @@
+/* Optimistic UI · AppShell — colours from tokens.css */
+.o-shell { display: flex; flex-direction: column; min-height: 100vh; background: var(--surface); }
+.o-shell__nav { position: sticky; top: 0; z-index: 100; }
+.o-shell__body { display: flex; flex: 1; min-height: 0; }
+.o-shell__side { position: sticky; top: 56px; align-self: flex-start; height: calc(100vh - 56px); overflow-y: auto; }
+.o-shell__main { flex: 1; min-width: 0; padding: var(--space-6); }
+@media (max-width: 720px) { .o-shell__side { display: none; } }

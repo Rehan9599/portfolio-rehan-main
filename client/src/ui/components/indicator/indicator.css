@@ -1,0 +1,10 @@
+/* Optimistic UI · Indicator — colours from tokens.css */
+.o-indicator { display: inline-block; width: 8px; height: 8px; border-radius: var(--radius-full); background: var(--text-muted); }
+.o-indicator--success { background: var(--success-solid); }
+.o-indicator--danger { background: var(--danger-solid); }
+.o-indicator--warning { background: var(--warning-solid); }
+.o-indicator--info { background: var(--info-solid); }
+.o-indicator--brand { background: var(--accent); }
+.o-indicator--pulse { position: relative; }
+.o-indicator--pulse::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: inherit; animation: o-indicator-pulse 1.6s ease-out infinite; }
+@keyframes o-indicator-pulse { 0% { transform: scale(1); opacity: .6; } 100% { transform: scale(2.6); opacity: 0; } }

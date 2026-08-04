@@ -1,0 +1,23 @@
+/* Optimistic UI · Link — colours come from tokens.css */
+.o-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-family: var(--font-sans);
+  color: var(--info-icon);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+  border-radius: var(--radius-2);
+  transition: color 0.15s;
+  cursor: pointer;
+}
+.o-link:hover { color: var(--text); }
+.o-link:focus-visible { outline: 0; box-shadow: var(--shadow-focus); }
+.o-link__ext { width: 12px; height: 12px; }
+
+.o-link--quiet { color: var(--text-secondary); text-decoration: none; }
+.o-link--quiet:hover { color: var(--text); text-decoration: underline; }
+
+.o-link--brand { color: var(--accent); }
+.o-link--brand:hover { color: var(--accent-hover); }

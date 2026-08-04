@@ -1,0 +1,26 @@
+/* Optimistic UI · Textarea — colours come from tokens.css */
+.o-field { display: flex; flex-direction: column; gap: var(--space-2); }
+.o-field__label { font-size: 0.82rem; font-weight: 500; color: var(--text-secondary); }
+.o-field__hint  { font-size: 0.76rem; color: var(--text-muted); }
+.o-field__error { font-size: 0.76rem; color: var(--danger-text); }
+
+.o-textarea {
+  width: 100%;
+  min-height: 84px;
+  padding: var(--space-2) var(--space-3);
+  background: var(--surface-raised);
+  color: var(--text);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-6);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  resize: vertical;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.o-textarea::placeholder { color: var(--text-faint); }
+.o-textarea:hover { border-color: var(--text-muted); }
+.o-textarea:focus-visible { outline: 0; border-color: var(--border-focus); box-shadow: var(--shadow-focus); }
+.o-textarea:disabled { opacity: 0.5; pointer-events: none; }
+.o-textarea--error { border-color: var(--danger-solid); }
+.o-textarea--error:focus-visible { box-shadow: 0 0 0 3px rgba(235, 74, 79, 0.16); }

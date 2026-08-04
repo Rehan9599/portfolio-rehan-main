@@ -1,0 +1,15 @@
+/* Optimistic UI · DatePicker — colours from tokens.css */
+.o-date { position: relative; display: inline-flex; font-family: var(--font-sans); }
+.o-date__input { display: inline-flex; align-items: center; gap: var(--space-2); height: 38px; padding: 0 var(--space-3); background: var(--surface-raised); color: var(--text); border: 1px solid var(--border-strong); border-radius: var(--radius-8); font-size: 0.88rem; cursor: pointer; }
+.o-date__input svg { width: 15px; height: 15px; color: var(--text-muted); }
+.o-date__scrim { position: fixed; inset: 0; z-index: 1490; }
+.o-date__cal { position: absolute; top: calc(100% + 6px); left: 0; z-index: 1500; width: 250px; padding: var(--space-3); background: var(--surface-overlay); border: 1px solid var(--border-strong); border-radius: var(--radius-10); box-shadow: var(--shadow-2); }
+.o-date__head { display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-2); }
+.o-date__month { font-size: 0.84rem; font-weight: 600; color: var(--text); }
+.o-date__nav { width: 26px; height: 26px; border: 0; background: transparent; color: var(--text-secondary); font-size: 1rem; border-radius: var(--radius-6); cursor: pointer; }
+.o-date__nav:hover { background: var(--surface-chip); color: var(--text); }
+.o-date__grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; }
+.o-date__dow { display: grid; place-items: center; height: 26px; font-size: 0.62rem; color: var(--text-faint); }
+.o-date__day { height: 30px; border: 0; background: transparent; color: var(--text-secondary); border-radius: var(--radius-6); font-size: 0.8rem; cursor: pointer; }
+.o-date__day:hover { background: var(--surface-chip); color: var(--text); }
+.o-date__day--sel { background: var(--accent); color: var(--on-accent); }

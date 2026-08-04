@@ -1,0 +1,7 @@
+/* Optimistic UI · List — colours from tokens.css */
+.o-list { margin: 0; padding: 0; list-style: none; border: 1px solid var(--border); border-radius: var(--radius-10); overflow: hidden; font-family: var(--font-sans); }
+.o-list__item { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-3) var(--space-4); color: var(--text); font-size: 0.88rem; }
+.o-list__item + .o-list__item { border-top: 1px solid var(--border); }
+.o-list__leading { display: inline-flex; color: var(--text-muted); flex: none; }
+.o-list__content { flex: 1; min-width: 0; }
+.o-list__trailing { display: inline-flex; align-items: center; color: var(--text-muted); flex: none; }

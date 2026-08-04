@@ -1,0 +1,11 @@
+/* Optimistic UI · FormLayout — colours from tokens.css */
+.o-form { display: flex; flex-direction: column; gap: var(--space-8); font-family: var(--font-sans); }
+.o-form__section { display: grid; grid-template-columns: 220px 1fr; gap: var(--space-6); padding-bottom: var(--space-8); border-bottom: 1px solid var(--border); }
+.o-form__section:last-of-type { border-bottom: 0; padding-bottom: 0; }
+.o-form__title { margin: 0 0 var(--space-1); font-size: 0.95rem; font-weight: 600; color: var(--text); }
+.o-form__desc { margin: 0; font-size: 0.82rem; line-height: 1.5; color: var(--text-muted); }
+.o-form__fields { display: flex; flex-direction: column; gap: var(--space-4); max-width: 480px; }
+.o-form__row { display: flex; gap: var(--space-4); }
+.o-form__row > * { flex: 1; }
+.o-form__actions { display: flex; justify-content: flex-end; gap: var(--space-2); }
+@media (max-width: 720px) { .o-form__section { grid-template-columns: 1fr; gap: var(--space-3); } }

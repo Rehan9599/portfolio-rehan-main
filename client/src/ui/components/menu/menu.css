@@ -1,0 +1,9 @@
+/* Optimistic UI · Menu — colours from tokens.css */
+.o-menu { display: flex; flex-direction: column; gap: 1px; min-width: 160px; font-family: var(--font-sans); }
+.o-menu__item { display: flex; align-items: center; gap: var(--space-2); width: 100%; padding: var(--space-2) var(--space-3); background: transparent; border: 0; border-radius: var(--radius-6); color: var(--text-secondary); font-size: 0.86rem; text-align: left; cursor: pointer; transition: background .12s, color .12s; }
+.o-menu__item:hover { background: var(--surface-chip); color: var(--text); }
+.o-menu__item--danger { color: var(--danger-text); }
+.o-menu__item--danger:hover { background: var(--danger-surface); }
+.o-menu__icon { display: inline-flex; color: var(--text-muted); }
+.o-menu__icon svg { width: 15px; height: 15px; }
+.o-menu__sep { height: 1px; margin: var(--space-1) 0; background: var(--border); }

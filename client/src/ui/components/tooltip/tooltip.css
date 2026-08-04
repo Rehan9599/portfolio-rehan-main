@@ -1,0 +1,6 @@
+/* Optimistic UI · Tooltip — colours from tokens.css */
+.o-tip { position: relative; display: inline-flex; }
+.o-tip__bubble { position: absolute; left: 50%; transform: translateX(-50%) translateY(4px); opacity: 0; pointer-events: none; white-space: nowrap; background: var(--surface-overlay); color: var(--text); border: 1px solid var(--border-strong); border-radius: var(--radius-6); padding: 4px 8px; font-family: var(--font-sans); font-size: 0.74rem; box-shadow: var(--shadow-2); transition: opacity .14s, transform .14s; z-index: 50; }
+.o-tip--top .o-tip__bubble { bottom: 100%; margin-bottom: 6px; }
+.o-tip--bottom .o-tip__bubble { top: 100%; margin-top: 6px; }
+.o-tip:hover .o-tip__bubble, .o-tip:focus-within .o-tip__bubble { opacity: 1; transform: translateX(-50%) translateY(0); }

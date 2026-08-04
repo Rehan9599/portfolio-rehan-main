@@ -1,0 +1,154 @@
+/* Optimistic UI · Card · colours come from tokens.css */
+.o-card {
+  position: relative;
+  /* background: var(--surface-raised); */
+  border: 1px solid var(--border);
+  border-radius: var(--radius-12);
+  color: var(--text);
+  font-family: var(--font-sans);
+  overflow: hidden;
+}
+.o-card--padded { padding: var(--space-5); }
+.o-card--raised { box-shadow: var(--shadow-2); }
+
+/* interactive · the whole card reads as one target */
+.o-card--interactive {
+  cursor: pointer;
+  transition: transform .18s cubic-bezier(.2,.7,.3,1), border-color .18s ease, box-shadow .18s ease;
+  outline: none;
+}
+.o-card--interactive:hover {
+  transform: translateY(-3px);
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-3);
+}
+.o-card--interactive:active { transform: translateY(-1px); }
+.o-card--interactive:focus-visible {
+  border-color: var(--border-focus);
+  box-shadow: var(--shadow-focus);
+}
+
+/* media band · flush to the card edges, rounds the top when it leads */
+.o-card__media {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  background: var(--surface-sunken);
+  line-height: 0;
+}
+.o-card__media > img,
+.o-card__media > video,
+.o-card__media > iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* when media is the first child of a non-padded card, follow the card corners */
+.o-card:not(.o-card--padded) > .o-card__media:first-child { border-radius: 0; }
+
+/* padded content region (pair with a flush Card so media stays edge-to-edge) */
+.o-card__body { padding: var(--space-5); }
+
+.o-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+.o-card__title { font-size: 0.95rem; font-weight: 600; color: var(--text); }
+.o-card__desc {
+  margin: var(--space-2) 0 0;
+  font-size: 0.86rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+}
+
+.o-card__footer {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border-subtle);
+}
+/* inside a flush card body the footer sits tight; no negative margins needed */
+.o-card__body > .o-card__footer:last-child { margin-bottom: 0; }
+
+
+/* Container positioning setup */
+.o-card--aurora {
+  position: relative;
+  overflow: hidden;
+  background: #0d0f17;
+  color: #fff;
+}
+
+/* Pseudo-element for drifting gradient */
+.o-card--aurora::before {
+  content: "";
+  position: absolute;
+  inset: -50%;
+  background: radial-gradient(circle at 30% 30%, rgba(99, 102, 241, 0.35), transparent 50%),
+              radial-gradient(circle at 70% 70%, rgba(236, 72, 153, 0.3), transparent 50%),
+              radial-gradient(circle at 50% 20%, rgba(56, 189, 248, 0.25), transparent 45%);
+  filter: blur(40px);
+  animation: aurora-drift 12s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Keep content above the moving background */
+.o-card--aurora > * {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes aurora-drift {
+  0% { transform: translate(0, 0) rotate(0deg) scale(1); }
+  50% { transform: translate(-8%, 6%) rotate(5deg) scale(1.1); }
+  100% { transform: translate(6%, -8%) rotate(-5deg) scale(1.05); }
+}
+
+.o-card--border-light {
+  position: relative;
+  border: 1px solid transparent;
+  background-clip: padding-box;
+  overflow: hidden;
+}
+
+/* Animated rotating border layer */
+.o-card--border-light::before {
+  content: "";
+  position: absolute;
+  inset: -150%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 280deg,
+    #6366f1 320deg,
+    #a855f7 360deg
+  );
+  animation: border-rotate 4s linear infinite;
+  z-index: 0;
+}
+
+/* Inner masking surface to retain card inner radius & color */
+.o-card--border-light::after {
+  content: "";
+  position: absolute;
+  inset: 1px; /* Match hairline border thickness */
+  border-radius: 11px; /* Card (12px) - Border (1px) */
+  background: #18181b;
+  z-index: 0;
+}
+
+.o-card--border-light > * {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes border-rotate {
+  to { transform: rotate(360deg); }
+}

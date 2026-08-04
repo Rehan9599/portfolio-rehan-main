@@ -1,0 +1,8 @@
+/* Optimistic UI · Stepper — colours from tokens.css */
+.o-stepper { display: inline-flex; align-items: center; height: 36px; border: 1px solid var(--border-strong); border-radius: var(--radius-8); overflow: hidden; background: var(--surface-raised); }
+.o-stepper__btn { width: 34px; height: 100%; border: 0; background: transparent; color: var(--text-secondary); font-size: 1rem; cursor: pointer; }
+.o-stepper__btn:hover:not(:disabled) { background: var(--surface-chip); color: var(--text); }
+.o-stepper__btn:disabled { opacity: .4; cursor: default; }
+.o-stepper__input { width: 46px; height: 100%; border: 0; border-inline: 1px solid var(--border-strong); background: transparent; color: var(--text); text-align: center; font-family: var(--font-sans); font-size: 0.9rem; -moz-appearance: textfield; }
+.o-stepper__input::-webkit-inner-spin-button { display: none; }
+.o-stepper__input:focus-visible { outline: 0; }

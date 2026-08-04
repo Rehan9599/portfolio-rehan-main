@@ -1,0 +1,37 @@
+/* Optimistic — Notification. Modify freely; colours come from tokens.css. */
+.o-notif {
+  display: flex;
+  gap: var(--space-3);
+  align-items: flex-start;
+  padding: 14px var(--space-4);
+  border-radius: var(--radius-10);
+  border: 1px solid var(--border-strong);
+  background: var(--surface-sunken);
+}
+.o-notif__icon { flex: none; margin-top: 1px; display: inline-flex; }
+.o-notif__body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+.o-notif__title { font: 600 0.9rem/1.3 var(--font-sans); color: var(--text); }
+.o-notif__text  { font-size: 0.84rem; line-height: 1.55; color: var(--text-secondary); }
+.o-notif__actions { display: flex; gap: var(--space-2); margin-top: 9px; }
+.o-notif__close {
+  flex: none; background: none; border: 0; cursor: pointer; padding: 3px;
+  margin: -2px -4px 0 0; color: var(--text-muted); border-radius: var(--radius-6);
+}
+.o-notif__close:hover { color: var(--text); background: var(--surface-chip); }
+
+/* severity — subtle tinted fill + coloured icon */
+.o-notif--info    { background: color-mix(in srgb, var(--info-solid) 11%, var(--surface-sunken)); }
+.o-notif--success { background: color-mix(in srgb, var(--success-solid) 11%, var(--surface-sunken)); }
+.o-notif--warning { background: color-mix(in srgb, var(--warning-solid) 11%, var(--surface-sunken)); }
+.o-notif--error   { background: color-mix(in srgb, var(--danger-solid) 11%, var(--surface-sunken)); }
+.o-notif--info    .o-notif__icon { color: var(--info-icon); }
+.o-notif--success .o-notif__icon { color: var(--success-icon); }
+.o-notif--warning .o-notif__icon { color: var(--warning-icon); }
+.o-notif--error   .o-notif__icon { color: var(--danger-icon); }
+
+/* bar-accent style — panel bg + coloured left border */
+.o-notif--bar { background: var(--surface-raised); border-color: var(--border); border-left-width: 3px; }
+.o-notif--bar.o-notif--info    { border-left-color: var(--info-solid); }
+.o-notif--bar.o-notif--success { border-left-color: var(--success-solid); }
+.o-notif--bar.o-notif--warning { border-left-color: var(--warning-solid); }
+.o-notif--bar.o-notif--error   { border-left-color: var(--danger-solid); }

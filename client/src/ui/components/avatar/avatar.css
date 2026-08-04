@@ -1,0 +1,26 @@
+/* Optimistic UI · Avatar — colours come from tokens.css */
+.o-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px; height: 32px;
+  flex: none;
+  overflow: hidden;
+  background: var(--surface-chip);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-full);
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  user-select: none;
+}
+.o-avatar__img { width: 100%; height: 100%; object-fit: cover; }
+.o-avatar__initials { line-height: 1; }
+
+.o-avatar--sm { width: 24px; height: 24px; font-size: 0.62rem; }
+.o-avatar--lg { width: 44px; height: 44px; font-size: 0.9rem; }
+
+.o-avatar-group { display: inline-flex; }
+.o-avatar-group .o-avatar { border-color: var(--surface); box-shadow: 0 0 0 1px var(--border-strong); }
+.o-avatar-group .o-avatar + .o-avatar { margin-left: -8px; }

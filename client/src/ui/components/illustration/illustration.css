@@ -1,0 +1,6 @@
+/* Optimistic UI · Illustration — colours from tokens.css */
+.o-illo__panel { stroke: var(--border-strong); stroke-width: 1.6; fill: var(--surface-raised); }
+.o-illo__line { stroke: var(--border-strong); stroke-width: 1.6; stroke-linecap: round; }
+.o-illo__soft { fill: var(--surface-chip); }
+.o-illo__dot { fill: var(--text-faint); }
+.o-illo__accent { stroke: var(--accent); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; fill: none; }

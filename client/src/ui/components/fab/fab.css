@@ -1,0 +1,7 @@
+/* Optimistic UI · Fab — colours from tokens.css */
+.o-fab { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2); width: 48px; height: 48px; padding: 0; border: 0; border-radius: var(--radius-full); background: var(--accent); color: var(--on-accent); box-shadow: var(--shadow-2); cursor: pointer; transition: filter .15s; }
+.o-fab:hover { filter: brightness(.96); }
+.o-fab:focus-visible { outline: 0; box-shadow: var(--shadow-focus), var(--shadow-2); }
+.o-fab svg { width: 22px; height: 22px; }
+.o-fab--extended { width: auto; padding: 0 var(--space-5); border-radius: var(--radius-full); }
+.o-fab__label { font-family: var(--font-sans); font-weight: 600; font-size: 0.9rem; }

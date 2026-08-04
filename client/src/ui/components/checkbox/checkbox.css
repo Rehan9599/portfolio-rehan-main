@@ -1,0 +1,41 @@
+/* Optimistic UI · Checkbox — colours come from tokens.css */
+.o-check {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: var(--text);
+}
+.o-check--disabled { opacity: 0.5; pointer-events: none; }
+
+/* hide the native input, keep it accessible */
+.o-check__input {
+  position: absolute;
+  width: 1px; height: 1px;
+  opacity: 0;
+  margin: 0;
+}
+
+.o-check__box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px; height: 18px;
+  flex: none;
+  background: var(--surface-raised);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-2);
+  color: var(--on-accent);
+  transition: background 0.15s, border-color 0.15s;
+}
+.o-check__tick { width: 14px; height: 14px; opacity: 0; transition: opacity 0.12s; }
+
+.o-check__input:checked + .o-check__box,
+.o-check__input:indeterminate + .o-check__box { background: var(--accent); border-color: var(--accent); }
+.o-check__input:checked + .o-check__box .o-check__tick { opacity: 1; }
+.o-check__input:focus-visible + .o-check__box { box-shadow: var(--shadow-focus); }
+.o-check:hover .o-check__input:not(:checked) + .o-check__box { border-color: var(--text-muted); }
+
+.o-check__label { line-height: 1.3; }

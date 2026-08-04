@@ -1,0 +1,7 @@
+/* Optimistic UI · EmptyState — colours from tokens.css */
+.o-empty { display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--space-2); padding: var(--space-12) var(--space-6); font-family: var(--font-sans); }
+.o-empty__icon { display: inline-flex; color: var(--text-muted); margin-bottom: var(--space-2); }
+.o-empty__icon svg { width: 28px; height: 28px; }
+.o-empty__title { font-size: 1rem; font-weight: 600; color: var(--text); }
+.o-empty__desc { max-width: 40ch; margin: 0; font-size: 0.86rem; line-height: 1.55; color: var(--text-secondary); }
+.o-empty__action { margin-top: var(--space-3); }

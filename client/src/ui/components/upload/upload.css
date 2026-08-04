@@ -1,0 +1,7 @@
+/* Optimistic UI · Upload — colours from tokens.css */
+.o-upload { display: flex; flex-direction: column; align-items: center; gap: var(--space-2); padding: var(--space-8) var(--space-6); background: var(--surface-raised); border: 1.5px dashed var(--border-strong); border-radius: var(--radius-12); color: var(--text-secondary); font-family: var(--font-sans); font-size: 0.86rem; cursor: pointer; transition: border-color .15s, background .15s; text-align: center; }
+.o-upload:hover, .o-upload--drag { border-color: var(--accent); background: var(--accent-surface); }
+.o-upload:focus-visible { outline: 0; box-shadow: var(--shadow-focus); }
+.o-upload__icon { width: 26px; height: 26px; color: var(--text-muted); }
+.o-upload--drag .o-upload__icon { color: var(--accent); }
+.o-upload__link { color: var(--accent); text-decoration: underline; }

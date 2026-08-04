@@ -1,0 +1,7 @@
+/* Optimistic UI · Snackbar · colours from tokens.css */
+.o-snack { display: inline-flex; align-items: center; gap: var(--space-3); padding: var(--space-2) var(--space-3) var(--space-2) var(--space-4); background: var(--surface-overlay); color: var(--text); border: 1px solid var(--border-strong); border-radius: var(--radius-8); font-family: var(--font-sans); font-size: 0.86rem; box-shadow: var(--shadow-2); }
+.o-snack--success { border-left: 3px solid var(--success-solid); }
+.o-snack--danger { border-left: 3px solid var(--danger-solid); }
+.o-snack__action { color: var(--accent); font-weight: 600; cursor: pointer; }
+.o-snack__close { border: 0; background: transparent; color: var(--text-muted); font-size: 1.1rem; line-height: 1; cursor: pointer; padding: 0 2px; }
+.o-snack__close:hover { color: var(--text); }

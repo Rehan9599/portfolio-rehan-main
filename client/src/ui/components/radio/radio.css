@@ -1,0 +1,46 @@
+/* Optimistic UI · Radio — colours come from tokens.css */
+.o-radio {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: var(--text);
+}
+.o-radio--disabled { opacity: 0.5; pointer-events: none; }
+
+.o-radio__input {
+  position: absolute;
+  width: 1px; height: 1px;
+  opacity: 0;
+  margin: 0;
+}
+
+.o-radio__dot {
+  position: relative;
+  display: inline-block;
+  width: 18px; height: 18px;
+  flex: none;
+  background: var(--surface-raised);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-full);
+  transition: border-color 0.15s;
+}
+.o-radio__dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 8px; height: 8px;
+  border-radius: var(--radius-full);
+  background: var(--on-accent);
+  transform: scale(0);
+  transition: transform 0.14s;
+}
+.o-radio__input:checked + .o-radio__dot { background: var(--accent); border-color: var(--accent); }
+.o-radio__input:checked + .o-radio__dot::after { transform: scale(1); }
+.o-radio__input:focus-visible + .o-radio__dot { box-shadow: var(--shadow-focus); }
+.o-radio:hover .o-radio__input:not(:checked) + .o-radio__dot { border-color: var(--text-muted); }
+
+.o-radio__label { line-height: 1.3; }

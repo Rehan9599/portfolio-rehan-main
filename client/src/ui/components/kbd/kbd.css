@@ -1,0 +1,2 @@
+/* Optimistic UI · Kbd — colours from tokens.css */
+.o-kbd { display: inline-flex; align-items: center; justify-content: center; min-width: 20px; height: 20px; padding: 0 5px; background: var(--surface-raised); color: var(--text-secondary); border: 1px solid var(--border-strong); border-bottom-width: 2px; border-radius: var(--radius-6); font-family: var(--font-mono); font-size: 0.7rem; line-height: 1; }

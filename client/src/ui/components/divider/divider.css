@@ -1,0 +1,6 @@
+/* Optimistic UI · Divider — colours from tokens.css */
+.o-divider--horizontal { height: 1px; width: 100%; background: var(--border); }
+.o-divider--vertical { width: 1px; align-self: stretch; min-height: 1em; background: var(--border); }
+.o-divider--labelled { display: flex; align-items: center; gap: var(--space-3); height: auto; background: transparent; }
+.o-divider--labelled::before, .o-divider--labelled::after { content: ""; flex: 1; height: 1px; background: var(--border); }
+.o-divider__label { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); }

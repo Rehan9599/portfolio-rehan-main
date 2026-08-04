@@ -1,0 +1,6 @@
+/* Optimistic UI · Grid — the 4/8/12 responsive system */
+.o-container { padding-inline: 16px; margin-inline: auto; }
+.o-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.o-col { grid-column: span var(--m, 4); }
+@media (min-width: 768px) { .o-container { padding-inline: 32px; } .o-row { grid-template-columns: repeat(8, 1fr); gap: 24px; } .o-col { grid-column: span var(--t); } }
+@media (min-width: 1024px) { .o-container { max-width: 1320px; padding-inline: clamp(24px, 5vw, 64px); } .o-row { grid-template-columns: repeat(12, 1fr); gap: 24px; } .o-col { grid-column: span var(--d); } }

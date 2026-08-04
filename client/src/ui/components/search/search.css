@@ -1,0 +1,9 @@
+/* Optimistic UI · Search — colours from tokens.css */
+.o-search { position: relative; display: flex; align-items: center; }
+.o-search__icon { position: absolute; left: var(--space-3); width: 15px; height: 15px; color: var(--text-muted); pointer-events: none; }
+.o-search__input { width: 100%; height: 38px; padding: 0 var(--space-8) 0 34px; background: var(--surface-raised); color: var(--text); border: 1px solid var(--border-strong); border-radius: var(--radius-8); font-family: var(--font-sans); font-size: 0.9rem; }
+.o-search__input::placeholder { color: var(--text-faint); }
+.o-search__input:focus-visible { outline: 0; border-color: var(--border-focus); box-shadow: var(--shadow-focus); }
+.o-search__input::-webkit-search-cancel-button { display: none; }
+.o-search__clear { position: absolute; right: var(--space-2); border: 0; background: transparent; color: var(--text-muted); font-size: 1.1rem; cursor: pointer; }
+.o-search__clear:hover { color: var(--text); }

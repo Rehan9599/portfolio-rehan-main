@@ -1,0 +1,7 @@
+/* Optimistic UI · Tag — colours from tokens.css */
+.o-tag { display: inline-flex; align-items: center; gap: var(--space-1); height: 24px; padding: 0 var(--space-2); background: var(--surface-chip); color: var(--text-secondary); border: 1px solid var(--border-strong); border-radius: var(--radius-6); font-family: var(--font-sans); font-size: 0.78rem; white-space: nowrap; }
+.o-tag__text { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.o-tag__remove { flex: none; }
+.o-tag__remove { display: inline-flex; align-items: center; justify-content: center; width: 14px; height: 14px; margin-right: -2px; padding: 0; border: 0; background: transparent; color: var(--text-muted); cursor: pointer; border-radius: var(--radius-full); }
+.o-tag__remove:hover { color: var(--text); background: var(--border-strong); }
+.o-tag__remove svg { width: 10px; height: 10px; }

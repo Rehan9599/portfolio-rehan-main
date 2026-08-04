@@ -1,0 +1,11 @@
+/* Optimistic UI · Combobox — colours from tokens.css */
+.o-combo { position: relative; display: inline-flex; width: 240px; font-family: var(--font-sans); }
+.o-combo__input { width: 100%; height: 38px; padding: 0 var(--space-8) 0 var(--space-3); background: var(--surface-raised); color: var(--text); border: 1px solid var(--border-strong); border-radius: var(--radius-8); font-size: 0.9rem; }
+.o-combo__input:focus-visible { outline: 0; border-color: var(--border-focus); box-shadow: var(--shadow-focus); }
+.o-combo__chev { position: absolute; right: var(--space-3); top: 12px; width: 14px; height: 14px; color: var(--text-muted); pointer-events: none; }
+.o-combo__scrim { position: fixed; inset: 0; z-index: 1490; }
+.o-combo__list { position: absolute; top: calc(100% + 6px); left: 0; right: 0; z-index: 1500; max-height: 220px; overflow-y: auto; background: var(--surface-overlay); border: 1px solid var(--border-strong); border-radius: var(--radius-10); box-shadow: var(--shadow-2); padding: var(--space-1); }
+.o-combo__opt { display: block; width: 100%; padding: var(--space-2) var(--space-3); background: transparent; border: 0; border-radius: var(--radius-6); color: var(--text-secondary); font-size: 0.86rem; text-align: left; cursor: pointer; }
+.o-combo__opt:hover { background: var(--surface-chip); color: var(--text); }
+.o-combo__opt--sel { color: var(--accent); }
+.o-combo__empty { padding: var(--space-3); color: var(--text-muted); font-size: 0.82rem; text-align: center; }

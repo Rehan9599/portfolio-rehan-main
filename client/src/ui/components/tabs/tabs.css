@@ -1,0 +1,7 @@
+/* Optimistic UI · Tabs — colours from tokens.css */
+.o-tabs { display: inline-flex; gap: var(--space-1); border-bottom: 1px solid var(--border); }
+.o-tab { position: relative; padding: var(--space-2) var(--space-3); background: transparent; border: 0; color: var(--text-muted); font-family: var(--font-sans); font-size: 0.86rem; font-weight: 500; cursor: pointer; transition: color .15s; }
+.o-tab:hover { color: var(--text-secondary); }
+.o-tab--active { color: var(--text); }
+.o-tab--active::after { content: ""; position: absolute; left: var(--space-2); right: var(--space-2); bottom: -1px; height: 2px; background: var(--accent); border-radius: 2px 2px 0 0; }
+.o-tab:focus-visible { outline: 0; box-shadow: var(--shadow-focus); border-radius: var(--radius-6); }

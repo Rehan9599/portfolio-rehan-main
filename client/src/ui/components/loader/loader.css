@@ -1,0 +1,3 @@
+/* Optimistic UI · Loader — colours from tokens.css */
+.o-loader { display: inline-block; border: 2px solid var(--border-strong); border-top-color: var(--accent); border-radius: var(--radius-full); animation: o-loader .7s linear infinite; }
+@keyframes o-loader { to { transform: rotate(360deg); } }

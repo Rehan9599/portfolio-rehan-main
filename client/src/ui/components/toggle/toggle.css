@@ -1,0 +1,42 @@
+/* Optimistic UI · Toggle — colours come from tokens.css */
+.o-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: var(--text);
+}
+.o-toggle--disabled { opacity: 0.5; pointer-events: none; }
+
+.o-toggle__input {
+  position: absolute;
+  width: 1px; height: 1px;
+  opacity: 0;
+  margin: 0;
+}
+
+.o-toggle__track {
+  position: relative;
+  display: inline-block;
+  width: 36px; height: 20px;
+  flex: none;
+  background: var(--surface-chip);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-full);
+  transition: background 0.16s, border-color 0.16s;
+}
+.o-toggle__thumb {
+  position: absolute;
+  top: 2px; left: 2px;
+  width: 14px; height: 14px;
+  border-radius: var(--radius-full);
+  background: var(--text-secondary);
+  transition: transform 0.16s, background 0.16s;
+}
+.o-toggle__input:checked + .o-toggle__track { background: var(--accent); border-color: var(--accent); }
+.o-toggle__input:checked + .o-toggle__track .o-toggle__thumb { transform: translateX(16px); background: var(--on-accent); }
+.o-toggle__input:focus-visible + .o-toggle__track { box-shadow: var(--shadow-focus); }
+
+.o-toggle__label { line-height: 1.3; }

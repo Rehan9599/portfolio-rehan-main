@@ -1,0 +1,12 @@
+/* Optimistic UI · SplitButton — colours from tokens.css */
+.o-split { display: inline-flex; border-radius: var(--radius-8); overflow: hidden; }
+.o-split__main, .o-split__more { border: 0; cursor: pointer; font-family: var(--font-sans); font-weight: 600; transition: filter .15s; }
+.o-split__main { height: 40px; padding: 0 var(--space-4); font-size: 0.9rem; }
+.o-split__more { width: 34px; display: inline-flex; align-items: center; justify-content: center; }
+.o-split__more svg { width: 15px; height: 15px; }
+.o-split--warm .o-split__main { background: var(--accent); color: var(--on-accent); }
+.o-split--warm .o-split__more { background: var(--accent); color: var(--on-accent); border-left: 1px solid rgba(0,0,0,.18); }
+.o-split--warm:hover .o-split__main, .o-split--warm:hover .o-split__more { filter: brightness(.95); }
+.o-split--primary .o-split__main { background: var(--carbon-50); color: var(--carbon-950); }
+.o-split--primary .o-split__more { background: var(--carbon-50); color: var(--carbon-950); border-left: 1px solid rgba(0,0,0,.12); }
+.o-split__main:focus-visible, .o-split__more:focus-visible { outline: 0; box-shadow: var(--shadow-focus); }

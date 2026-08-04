@@ -1,0 +1,20 @@
+/* Optimistic UI · Callout — colours come from tokens.css */
+.o-callout {
+  display: flex;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid transparent;
+  border-radius: var(--radius-8);
+  font-family: var(--font-sans);
+}
+.o-callout__icon { flex: none; display: inline-flex; margin-top: 1px; }
+.o-callout__icon svg { width: 18px; height: 18px; }
+.o-callout__body { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.o-callout__title { font-size: 0.9rem; font-weight: 600; color: var(--text); }
+.o-callout__text { font-size: 0.84rem; line-height: 1.55; color: var(--text-secondary); }
+
+.o-callout--neutral { background: var(--surface-raised);  border-color: var(--border-strong); }
+.o-callout--info    { background: var(--info-surface);    border-color: var(--info-border);    color: var(--info-icon); }
+.o-callout--success { background: var(--success-surface); border-color: var(--success-border); color: var(--success-icon); }
+.o-callout--warning { background: var(--warning-surface); border-color: var(--warning-border); color: var(--warning-icon); }
+.o-callout--danger  { background: var(--danger-surface);  border-color: var(--danger-border);  color: var(--danger-icon); }

@@ -1,0 +1,9 @@
+/* Optimistic UI · BottomSheet — colours from tokens.css */
+.o-sheet { position: fixed; inset: 0; z-index: 1400; display: flex; align-items: flex-end; font-family: var(--font-sans); }
+.o-sheet__backdrop { position: absolute; inset: 0; background: rgba(0,0,0,.6); animation: o-fade .16s ease; }
+.o-sheet__panel { position: relative; width: 100%; max-height: 85vh; overflow-y: auto; background: var(--surface-overlay); border-top: 1px solid var(--border-strong); border-radius: var(--radius-16) var(--radius-16) 0 0; box-shadow: var(--shadow-3); padding: var(--space-3) var(--space-5) var(--space-6); animation: o-sheet-in .22s ease; }
+.o-sheet__grip { width: 36px; height: 4px; margin: 0 auto var(--space-4); border-radius: var(--radius-full); background: var(--border-strong); }
+.o-sheet__title { font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: var(--space-3); }
+.o-sheet__body { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.55; }
+@keyframes o-sheet-in { from { transform: translateY(100%); } }
+@keyframes o-fade { from { opacity: 0; } }

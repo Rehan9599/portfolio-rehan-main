@@ -1,0 +1,15 @@
+/* Optimistic UI · Choicebox — colours from tokens.css */
+.o-choicebox { display: flex; gap: var(--space-3); padding: var(--space-3) var(--space-4); background: var(--surface-raised); border: 1px solid var(--border-strong); border-radius: var(--radius-10); cursor: pointer; font-family: var(--font-sans); transition: border-color .15s, background .15s; }
+.o-choicebox:hover { border-color: var(--text-muted); }
+.o-choicebox--disabled { opacity: .5; pointer-events: none; }
+.o-choicebox__input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.o-choicebox__dot { position: relative; flex: none; width: 18px; height: 18px; margin-top: 1px; border: 1px solid var(--border-strong); border-radius: var(--radius-full); background: var(--surface); }
+.o-choicebox__dot::after { content: ""; position: absolute; inset: 0; margin: auto; width: 8px; height: 8px; border-radius: var(--radius-full); background: var(--on-accent); transform: scale(0); transition: transform .14s; }
+.o-choicebox__input:checked + .o-choicebox__dot { background: var(--accent); border-color: var(--accent); }
+.o-choicebox__input:checked + .o-choicebox__dot::after { transform: scale(1); }
+.o-choicebox__input:checked ~ .o-choicebox__body { }
+.o-choicebox:has(.o-choicebox__input:checked) { border-color: var(--accent-border); background: var(--accent-surface); }
+.o-choicebox__input:focus-visible + .o-choicebox__dot { box-shadow: var(--shadow-focus); }
+.o-choicebox__body { display: flex; flex-direction: column; gap: 2px; }
+.o-choicebox__label { font-size: 0.9rem; font-weight: 500; color: var(--text); }
+.o-choicebox__desc { font-size: 0.8rem; color: var(--text-secondary); line-height: 1.45; }
