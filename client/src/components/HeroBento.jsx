@@ -189,6 +189,7 @@ export default function HeroBento({ personalInfo, projects = [] }) {
             )}
           </motion.div>
 
+          {/* Row 1-2, col 3: education (spans both rows via grid-template-areas) */}
           <motion.div variants={bentoItemVariants} className="bento-cell bento-edu">
             <div className="bento-edu-icon">
               <GraduationCap size={30} />

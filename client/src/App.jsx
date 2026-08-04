@@ -1,23 +1,20 @@
-import React from 'react';
-import usePortfolioData from './hooks/usePortfolioData';
-import AnimatedBackground from './components/AnimatedBackground';
+import { useState } from 'react';
+import TerminalBoot from './components/TerminalBoot';
+import CursorTrail from './components/CursorTrail';
+import GlobalInteractionSound from './components/GlobalInteractionSound';
+import ContactDock from './components/ContactDock';
 import Navbar from './components/Navbar';
+import { SectionScrollProvider, SectionTrack } from './components/SectionScrollContext';
 import HeroBento from './components/HeroBento';
 import ProjectsSection from './components/ProjectsSection';
 import SkillsSection from './components/SkillsSection';
 import CertificatesSection from './components/CertificatesSection';
 import JourneySection from './components/JourneySection';
 import ContactSection from './components/ContactSection';
-import ContactDock from './components/ContactDock';
-import GlobalInteractionSound from './components/GlobalInteractionSound';
-import CursorTrail from './components/CursorTrail';
-import TerminalBoot from './components/TerminalBoot';
-import { useState } from 'react';
-import { SectionScrollProvider, SectionTrack } from './components/SectionScrollContext';
+import usePortfolioData from './hooks/usePortfolioData';
+import AnimatedBackground from './components/AnimatedBackground';
 
 const SECTION_IDS = ['about', 'projects', 'skills', 'certificates', 'journey', 'contact'];
-
-
 
 
 function LoadingScreen() {
@@ -105,35 +102,34 @@ function ErrorScreen({ message }) {
     </div>
   );
 }
-
 export default function App() {
   const { data, loading, error } = usePortfolioData();
   const [bootDone, setBootDone] = useState(false);
-  
-    if (!bootDone) {
-      return <TerminalBoot onComplete={() => setBootDone(true)} />;
-    }
 
-  if (loading) return <LoadingScreen />;
-  if (error) return <ErrorScreen message={error} />;
+  if (!bootDone) {
+    return <TerminalBoot onComplete={() => setBootDone(true)} />;
+  }
 
-  const { personalInfo, projects, skills, certificates, journey, journeyText } = data;
+  if (loading) return LoadingScreen();
+  if (error) return ErrorScreen();
+
+  const { personalInfo, projects,skills, certificates, journeyText, journey } = data;
 
   return (
     <SectionScrollProvider sectionIds={SECTION_IDS}>
       <div className="portfolio-app">
         <CursorTrail />
-        <GlobalInteractionSound />
         <AnimatedBackground />
+        <GlobalInteractionSound />
         <ContactDock personalInfo={personalInfo} />
         <Navbar personalInfo={personalInfo} />
         <main>
           <SectionTrack>
-            <HeroBento personalInfo={personalInfo} projects={projects}/>
+            <HeroBento personalInfo={personalInfo} projects={projects} />
             <ProjectsSection projects={projects} />
             <SkillsSection skills={skills} />
             <CertificatesSection certificates={certificates} />
-            <JourneySection journey={journey} />
+            <JourneySection journey={journey}/>
             <ContactSection personalInfo={personalInfo} />
           </SectionTrack>
         </main>
