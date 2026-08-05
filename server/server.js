@@ -20,7 +20,7 @@ app.use(cors());
 app.use(express.json());
 
 // Serve static assets (project images, certificates, etc.)
-app.use('/assets', express.static(join(__dirname, '..', 'src', 'assets')));
+app.use('/assets', express.static(join(__dirname, '.', 'src', 'assets')));
 
 // Routes
 app.use('/api/portfolio', portfolioRoutes);
