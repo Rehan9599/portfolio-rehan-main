@@ -2054,6 +2054,10 @@ body {
       "github  github";
   }
 
+  .btn {
+    padding: var(--space-2) var(--space-4);
+  }
+
 }
 
 @media (max-width: 900px) {
@@ -2073,7 +2077,7 @@ body {
   }
   .toolstack-cluster{
   display: grid;
-  grid-template-columns: repeat(6, 84px);
+  grid-template-columns: repeat(3, 84px);
   gap: var(--space-3);
   padding: var(--space-3);
   border-radius: var(--radius-12);
