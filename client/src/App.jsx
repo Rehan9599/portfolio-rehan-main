@@ -119,7 +119,7 @@ export default function App() {
     <SectionScrollProvider sectionIds={SECTION_IDS}>
       <div className="portfolio-app">
         <CursorTrail />
-        <AnimatedBackground />
+        {/* <AnimatedBackground /> */}
         <GlobalInteractionSound />
         <ContactDock personalInfo={personalInfo} />
         <Navbar personalInfo={personalInfo} />
