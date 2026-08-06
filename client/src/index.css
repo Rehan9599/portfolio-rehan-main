@@ -119,7 +119,7 @@ body {
 }
 
 .btn-primary {
-  background: var(--accent);
+  background: var(--carbon-100);
   color: var(--on-accent);
   border: 1px solid transparent;
 }
@@ -977,7 +977,7 @@ body {
 .toolstack-clusters {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-10);
+  gap: var(--space-5);
   margin-bottom: var(--space-8);
 }
 
@@ -1159,7 +1159,7 @@ body {
 
 .hero-quote-big {
   max-width: none;
-  white-space: nowrap;   /* forces the single line you asked for */
+
   font-size: 1.3rem;
   line-height: 1.55;
   font-weight: 500;
@@ -1965,35 +1965,6 @@ body {
   margin: 0;
 }
 
-@media (max-width: 800px) {
-  .journey-route-svg { display: none; }
-
-  .journey-route-wrap {
-    aspect-ratio: unset;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-6);
-  }
-
-  .journey-milestone {
-    position: static;
-    transform: none;
-    border-left: 2px solid var(--border);
-    padding-left: var(--space-4);
-  }
-
-  .journey-milestone-dot {
-    position: absolute;
-    left: -7px;
-    top: 4px;
-  }
-
-  .journey-milestone-label {
-    position: static;
-    width: auto;
-    text-align: left !important;
-  }
-}
 
 
 .contact-section{
@@ -2082,6 +2053,7 @@ body {
       "focus   trail"
       "github  github";
   }
+
 }
 
 @media (max-width: 900px) {
@@ -2099,7 +2071,15 @@ body {
     scroll-snap-type: y mandatory;
     -webkit-overflow-scrolling: touch;
   }
-
+  .toolstack-cluster{
+  display: grid;
+  grid-template-columns: repeat(6, 84px);
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border-radius: var(--radius-12);
+  border: 1px dashed transparent;
+  transition: opacity 0.3s ease, border-color 0.3s ease;
+  }
   .toolstack-left,
   .toolstack-right {
     min-height: 100%;
@@ -2142,4 +2122,72 @@ body {
   .journey-tick-label { font-size: 11px; }
   .journey-milestone-title { font-size: 0.85rem; }
   .journey-milestone-desc { font-size: 0.72rem; }
+}
+
+
+.contact-section {
+  height: 100%;
+  overflow-y: auto;
+  padding: calc(var(--navbar-height) + var(--space-6)) var(--space-8) var(--space-8);
+  display: flex;
+  align-items: center;
+}
+
+.contact-card {
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-16);
+  padding: var(--space-12);
+  max-width: 750px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.contact-success {
+  text-align: center;
+  padding: var(--space-8) 0;
+}
+
+.contact-success svg { margin: 0 auto var(--space-4); }
+
+.contact-success h3 {
+  font-size: 1.6rem;
+  color: var(--text);
+  font-weight: 700;
+  margin-bottom: var(--space-2);
+}
+
+.contact-success p {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.contact-error {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-10);
+  background: var(--danger-surface);
+  border: 1px solid var(--danger-border);
+  color: var(--danger-text);
+  font-size: 0.95rem;
+}
+
+.contact-submit {
+  width: 100%;
+  padding: var(--space-4);
+  font-size: 1.05rem;
+  margin-top: var(--space-2);
+}
+
+.contact-submit:disabled {
+  opacity: 0.7;
+  cursor: wait;
 }

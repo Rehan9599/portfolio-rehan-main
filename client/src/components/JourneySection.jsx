@@ -10,10 +10,29 @@ const CURVE_PATH =
 
 const AXIS_DURATION = 0.6;
 const CURVE_START_DELAY = AXIS_DURATION * 2;
-const CURVE_DURATION = 2;
+const CURVE_DURATION = 6;
+
+const MOBILE_CURVE_START = { x: 10, y: 505 };
+const MOBILE_CURVE_END = { x: 800, y: 20 };
+const MOBILE_CURVE_DELAY = 0.2;
+const MOBILE_CURVE_DURATION = 3;
 
 const MOBILE_HOLD_MS = 2200;
 const MOBILE_GAP_MS = 500;
+
+// Builds a smooth S-curve through any number of points, same construction
+// style as the hand-authored desktop CURVE_PATH (midpoint-x control handles).
+function buildCurvePath(points) {
+  if (points.length === 0) return '';
+  let d = `M${points[0].x} ${points[0].y}`;
+  for (let i = 0; i < points.length - 1; i++) {
+    const p0 = points[i];
+    const p1 = points[i + 1];
+    const midX = (p0.x + p1.x) / 2;
+    d += ` C${midX} ${p0.y},${midX} ${p1.y},${p1.x} ${p1.y}`;
+  }
+  return d;
+}
 
 export default function JourneySection({ journey }) {
   const isMobile = useIsMobile(900);
@@ -47,62 +66,90 @@ export default function JourneySection({ journey }) {
     return () => clearTimeout(timer);
   }, [isMobile, journey.length]);
 
+  // Mobile points: evenly spaced along a straight top-left → bottom-right diagonal
+  const mobilePoints = journey.map((m, i) => {
+    const t = journey.length === 1 ? 0 : i / (journey.length - 1);
+    return {
+      ...m,
+      mx: MOBILE_CURVE_START.x + t * (MOBILE_CURVE_END.x - MOBILE_CURVE_START.x),
+      my: MOBILE_CURVE_START.y + t * (MOBILE_CURVE_END.y - MOBILE_CURVE_START.y),
+    };
+  });
+
+  const mobileCurvePath = buildCurvePath(mobilePoints.map((p) => ({ x: p.mx, y: p.my })));
+
   return (
     <section className="journey-section" id="journey">
       <div className="app-container">
         <div className="journey-route-wrap">
           <svg viewBox="0 0 1000 600" className="journey-route-svg" preserveAspectRatio="none">
-            <text x={AXIS_X.start - 20} y={(AXIS_Y.start + AXIS_Y.end) / 2} className="journey-axis-title" transform={`rotate(-90, ${AXIS_X.start - 20}, ${(AXIS_Y.start + AXIS_Y.end) / 2})`}>
-              EXPERIENCE →
-            </text>
-            <text x={(AXIS_X.start + AXIS_X.end) / 2} y={580} className="journey-axis-title" textAnchor="middle">
-              TIMELINE →
-            </text>
-
-            <motion.line
-              x1={AXIS_Y.x} y1={AXIS_Y.end} x2={AXIS_Y.x} y2={AXIS_Y.start}
-              className="journey-axis-line"
-              initial={{ pathLength: 0 }}
-              whileInView={{ pathLength: 1 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: AXIS_DURATION, ease: 'easeOut' }}
-            />
-
-            <motion.line
-              x1={AXIS_X.start} y1={AXIS_X.y} x2={AXIS_X.end} y2={AXIS_X.y}
-              className="journey-axis-line"
-              initial={{ pathLength: 0 }}
-              whileInView={{ pathLength: 1 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: AXIS_DURATION, ease: 'easeOut', delay: AXIS_DURATION }}
-            />
-
-            {journey.map((m, i) => (
-              <motion.g
-                key={`tick-${m.year}`}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.3, delay: AXIS_DURATION * 2 + i * 0.05 }}
-              >
-                <line x1={m.x} y1={AXIS_X.y} x2={m.x} y2={AXIS_X.y + 8} className="journey-tick-line" />
-                <text x={m.x} y={AXIS_X.y + 26} className="journey-tick-label" textAnchor="middle">
-                  {m.year}
+            {!isMobile && (
+              <>
+                <text x={AXIS_X.start - 20} y={(AXIS_Y.start + AXIS_Y.end) / 2} className="journey-axis-title" transform={`rotate(-90, ${AXIS_X.start - 20}, ${(AXIS_Y.start + AXIS_Y.end) / 2})`}>
+                  EXPERIENCE →
                 </text>
-              </motion.g>
-            ))}
+                <text x={(AXIS_X.start + AXIS_X.end) / 2} y={580} className="journey-axis-title" textAnchor="middle">
+                  TIMELINE →
+                </text>
 
-            <motion.path
-              d={CURVE_PATH}
-              className="journey-curve-line"
-              initial={{ pathLength: 0 }}
-              whileInView={{ pathLength: 1 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: CURVE_DURATION, ease: 'easeInOut', delay: CURVE_START_DELAY }}
-            />
+                <motion.line
+                  x1={AXIS_Y.x} y1={AXIS_Y.end} x2={AXIS_Y.x} y2={AXIS_Y.start}
+                  className="journey-axis-line"
+                  initial={{ pathLength: 0 }}
+                  whileInView={{ pathLength: 1 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: AXIS_DURATION, ease: 'easeOut' }}
+                />
+
+                <motion.line
+                  x1={AXIS_X.start} y1={AXIS_X.y} x2={AXIS_X.end} y2={AXIS_X.y}
+                  className="journey-axis-line"
+                  initial={{ pathLength: 0 }}
+                  whileInView={{ pathLength: 1 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: AXIS_DURATION, ease: 'easeOut', delay: AXIS_DURATION }}
+                />
+
+                {journey.map((m, i) => (
+                  <motion.g
+                    key={`tick-${m.year}`}
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    transition={{ duration: 0.3, delay: AXIS_DURATION * 2 + i * 0.05 }}
+                  >
+                    <line x1={m.x} y1={AXIS_X.y} x2={m.x} y2={AXIS_X.y + 8} className="journey-tick-line" />
+                    <text x={m.x} y={AXIS_X.y + 26} className="journey-tick-label" textAnchor="middle">
+                      {m.year}
+                    </text>
+                  </motion.g>
+                ))}
+
+                <motion.path
+                  d={CURVE_PATH}
+                  className="journey-curve-line"
+                  initial={{ pathLength: 0 }}
+                  whileInView={{ pathLength: 1 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: CURVE_DURATION, ease: 'easeInOut', delay: CURVE_START_DELAY }}
+                />
+              </>
+            )}
+
+            {isMobile && (
+              <motion.path
+                d={mobileCurvePath}
+                className="journey-curve-line"
+                initial={{ pathLength: 0 }}
+                animate={{ pathLength: 1 }}
+                transition={{ duration: MOBILE_CURVE_DURATION, ease: 'easeInOut', delay: MOBILE_CURVE_DELAY }}
+              />
+            )}
           </svg>
 
-          {journey.map((m, index) => {
+          {(isMobile ? mobilePoints : journey).map((m, index) => {
+            const px = isMobile ? m.mx : m.x;
+            const py = isMobile ? m.my : m.y;
             const pointDelay = CURVE_START_DELAY + (index / (journey.length - 1)) * CURVE_DURATION;
             const isActive = isMobile ? activeIndex === index : true;
 
@@ -110,11 +157,12 @@ export default function JourneySection({ journey }) {
               <motion.div
                 key={m.year}
                 className="journey-milestone"
-                style={{ left: `${(m.x / 1000) * 100}%`, top: `${(m.y / 600) * 100}%` }}
+                style={{ left: `${(px / 1000) * 100}%`, top: `${(py / 600) * 100}%` }}
                 initial={{ opacity: 0, scale: 0.5 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.35, delay: isMobile ? 0 : pointDelay }}
+                animate={isMobile ? { opacity: 1, scale: 1 } : undefined}
+                whileInView={!isMobile ? { opacity: 1, scale: 1 } : undefined}
+                viewport={!isMobile ? { once: true, amount: 0.3 } : undefined}
+                transition={{ duration: 0.35, delay: isMobile ? MOBILE_CURVE_DELAY : pointDelay }}
               >
                 <motion.div
                   className="journey-milestone-dot"

@@ -188,9 +188,9 @@ export default function ProjectsSection({ projects }) {
                 <motion.div
                   key={hoveredLeftover.title}
                   className="project-card-v3 leftover-preview-popup"
-                  initial={{ opacity: 0, scale: 0.92, x: -10 }}
-                  animate={{ opacity: 1, scale: 1, x: 0 }}
-                  exit={{ opacity: 0, scale: 0.92, x: -10 }}
+                  initial={{ opacity: 0, scale: 0.92, x: -10, y:-10 }}
+                  animate={{ opacity: 1, scale: 1, x: 0, y:0 }}
+                  exit={{ opacity: 0, scale: 0.92, x: -10, y:-10 }}
                   transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
                   onMouseEnter={() => setHoveredLeftover(hoveredLeftover)}
                   onMouseLeave={() => setHoveredLeftover(null)}

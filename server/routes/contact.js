@@ -1,14 +1,13 @@
 import express from 'express';
 import Message from '../models/Message.js';
+import { sendContactEmail } from '../utils/mailer.js';
 
 const router = express.Router();
 
-// POST /api/contact — Store a contact form submission
 router.post('/', async (req, res) => {
   try {
     const { name, email, message } = req.body;
 
-    // Validation
     if (!name || !email || !message) {
       return res.status(400).json({
         success: false,
@@ -16,7 +15,6 @@ router.post('/', async (req, res) => {
       });
     }
 
-    // Basic email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return res.status(400).json({
@@ -26,6 +24,14 @@ router.post('/', async (req, res) => {
     }
 
     const newMessage = await Message.create({ name, email, message });
+
+    // Best-effort notification — the message is already saved above,
+    // so a failed email shouldn't fail the whole request.
+    try {
+      await sendContactEmail({ name, email, message });
+    } catch (mailErr) {
+      console.error('Contact email failed to send:', mailErr);
+    }
 
     res.status(201).json({
       success: true,
