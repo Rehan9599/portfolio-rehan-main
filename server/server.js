@@ -19,7 +19,7 @@ const PORT = process.env.PORT || 5000;
 const allowedOrigins = [
   'http://localhost:5173', // Vite local development
   'http://localhost:3000', // React local development
-  'https://kind-coast-04891f000.7.azurestaticapps.net/' // Azure Frontend URL
+  'https://kind-coast-04891f000.7.azurestaticapps.net' // Azure Frontend URL
 ];
 
 app.use(cors({
