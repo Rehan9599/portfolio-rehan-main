@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import API from '../api';
 
 export default function usePortfolioData() {
   const [data, setData] = useState(null);
@@ -10,7 +10,7 @@ export default function usePortfolioData() {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const response = await axios.get('/api/portfolio');
+        const response = await API.get('/api/portfolio');
         if (response.data.success) {
           setData(response.data.data);
         } else {
