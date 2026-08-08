@@ -13,8 +13,6 @@ import JourneySection from './components/JourneySection';
 import ContactSection from './components/ContactSection';
 import usePortfolioData from './hooks/usePortfolioData';
 import AnimatedBackground from './components/AnimatedBackground';
-import MobileSectionPager from './components/MobileSectionPager';
-import { useIsMobile } from './hooks/useIsMobile';
 
 const SECTION_IDS = ['about', 'projects', 'skills', 'certificates', 'journey', 'contact'];
 
@@ -104,42 +102,36 @@ function ErrorScreen({ message }) {
     </div>
   );
 }
-
 export default function App() {
   const { data, loading, error } = usePortfolioData();
   const [bootDone, setBootDone] = useState(false);
-  const isMobile = useIsMobile(900);
 
-  if (!bootDone) return <TerminalBoot onComplete={() => setBootDone(true)} />;
-  if (loading) return <LoadingScreen />;
-  if (error) return <ErrorScreen message={error} />;
+  if (!bootDone) {
+    return <TerminalBoot onComplete={() => setBootDone(true)} />;
+  }
+
+  if (loading) return LoadingScreen();
+  if (error) return ErrorScreen();
 
   const { personalInfo, projects,skills, certificates, journeyText, journey } = data;
-
-  const sections = (
-    <>
-      <HeroBento personalInfo={personalInfo} projects={projects} />
-      <ProjectsSection projects={projects} />
-      <SkillsSection skills={skills}/>
-      <CertificatesSection certificates={certificates} />
-      <JourneySection journey={journey} />
-      <ContactSection personalInfo={personalInfo} />
-    </>
-  );
 
   return (
     <SectionScrollProvider sectionIds={SECTION_IDS}>
       <div className="portfolio-app">
         <CursorTrail />
+        {/* <AnimatedBackground /> */}
         <GlobalInteractionSound />
         <ContactDock personalInfo={personalInfo} />
         <Navbar personalInfo={personalInfo} />
         <main>
-          {isMobile ? (
-            <MobileSectionPager sectionIds={SECTION_IDS}>{sections}</MobileSectionPager>
-          ) : (
-            <SectionTrack>{sections}</SectionTrack>
-          )}
+          <SectionTrack>
+            <HeroBento personalInfo={personalInfo} projects={projects} />
+            <ProjectsSection projects={projects} />
+            <SkillsSection skills={skills} />
+            <CertificatesSection certificates={certificates} />
+            <JourneySection journey={journey}/>
+            <ContactSection personalInfo={personalInfo} />
+          </SectionTrack>
         </main>
       </div>
     </SectionScrollProvider>

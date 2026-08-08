@@ -279,9 +279,6 @@ body {
   .journey-metrics-row {
     grid-template-columns: 1fr;
   }
-  .nav-links {
-    display: none;
-  }
   .section-heading {
     font-size: 2rem;
   }
@@ -1989,16 +1986,16 @@ body {
 }
 
 .navbar { overflow: visible; }
-
 @media (max-width: 900px) {
   .navbar-inner { position: relative; }
   .nav-hamburger { display: flex; }
 
   .nav-links {
+    display: flex; /* explicit now — no longer inherits/relies on any other rule */
     position: absolute;
     top: 100%;
     right: var(--space-4);
-    z-index: 2000; /* explicit, doesn't just inherit from .navbar */
+    z-index: 2000;
     flex-direction: column;
     align-items: stretch;
     gap: var(--space-1);
@@ -2077,15 +2074,45 @@ body {
     scroll-snap-type: y mandatory;
     -webkit-overflow-scrolling: touch;
   }
+  .toolstack-clusters {
+    gap: var(--space-3);
+  }
+  .toolstack-filters{
+    gap: var(--space-3);
+  }
+  .toolstack-filter-btn{
+    font-size: 0.7rem;
+  }
+
+  .toolstack-subtitle{
+    font-size: 0.8rem;
+  }
+  .toolstack-key {
+    width: 60px;
+    height: 60px;
+  }
+  .toolstack-key-label{
+    font-size: 1rem;
+    font-weight: 500;
+  }
+  .toolstack-key-name {
+    font-size: 0.48rem;
+  }
+  .toolstack-key-index{
+    top: 3px;
+    left: 3px;
+    font-size: 0.55rem;
+  }
   .toolstack-cluster{
   display: grid;
-  grid-template-columns: repeat(3, 84px);
-  gap: var(--space-3);
+  grid-template-columns: repeat(3, 64px);
+  gap: var(--space-2);
   padding: var(--space-3);
   border-radius: var(--radius-12);
   border: 1px dashed transparent;
   transition: opacity 0.3s ease, border-color 0.3s ease;
   }
+
   .toolstack-left,
   .toolstack-right {
     min-height: 100%;
@@ -2095,6 +2122,7 @@ body {
   }
 
   .toolstack-right {
+    display: none;
     grid-template-columns: repeat(2, 1fr);
     justify-content: center;
     align-content: center;
@@ -2198,67 +2226,3 @@ body {
   cursor: wait;
 }
 
-
-.mobile-pager-viewport {
-  position: fixed;
-  inset: 0;
-  overflow: hidden;
-}
-
-.mobile-pager-track {
-  display: flex;
-  height: 100%;
-  width: 100%;
-  transition: transform 450ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.mobile-pager-page {
-  flex: 0 0 100%;
-  width: 100%;
-  height: 100%;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
-/* @media (max-width: 900px) {
-  .hero-section,
-  .projects-section,
-  .toolstack-section,
-  .certificates-section,
-  .contact-section {
-    height: auto;
-    min-height: 100%;
-    overflow: visible; /* was overflow-y: auto / overflow: hidden on some of these — remove that nesting */
-  /* } */
-  /* JourneySection is deliberately excluded: its graph depends on a fixed-height
-     flex chain (.journey-section{height:100%} → .journey-route-wrap{flex:1}),
-     and its mobile mode is already a single self-contained screen by design. */
-/* } */
-
-/* @media (max-width: 900px) {
-  .toolstack-section { padding: calc(var(--navbar-height) + var(--space-4)) var(--space-4) var(--space-8); }
-
-  .toolstack-left { display: flex; flex-direction: column; }
-  .toolstack-left > .section-number,
-  .toolstack-left > .section-heading,
-  .toolstack-left > .toolstack-subtitle { order: -2; }
-  .toolstack-filters { order: -1; flex-wrap: wrap; gap: var(--space-3); margin-bottom: var(--space-6); }
-  .toolstack-clusters { order: 0; }
-
-  .toolstack-cluster { grid-template-columns: repeat(4, 1fr); gap: var(--space-2); }
-  .toolstack-key { width: 100%; height: auto; aspect-ratio: 1 / 1; padding: var(--space-1); }
-  .toolstack-key-label { font-size: 0.9rem; }
-  .toolstack-key-name { font-size: 0.55rem; }
-
-  .toolstack-right { grid-template-columns: repeat(2, 1fr); padding-top: var(--space-6); }
-}
-
-@media (max-width: 900px) {
-  .projects-section { padding: calc(var(--navbar-height) + var(--space-4)) var(--space-4) var(--space-8); }
-  .projects-layout { grid-template-columns: 1fr; }
-  .projects-deck-col { display: none; } /* only the dealt hand remains visible once the shuffle finishes */
-  /* .projects-hand-col { grid-template-columns: 1fr; gap: var(--space-4); }
-  .project-card-v3-image { height: 90px; }
-  .project-card-v3-body { padding: var(--space-4); }
-  .shuffle-overlay--docked { left: 50%; }
-} */  
