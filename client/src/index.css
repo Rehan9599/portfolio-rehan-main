@@ -2220,7 +2220,7 @@ body {
   -webkit-overflow-scrolling: touch;
 }
 
-@media (max-width: 900px) {
+/* @media (max-width: 900px) {
   .hero-section,
   .projects-section,
   .toolstack-section,
@@ -2229,13 +2229,13 @@ body {
     height: auto;
     min-height: 100%;
     overflow: visible; /* was overflow-y: auto / overflow: hidden on some of these — remove that nesting */
-  }
+  /* } */
   /* JourneySection is deliberately excluded: its graph depends on a fixed-height
      flex chain (.journey-section{height:100%} → .journey-route-wrap{flex:1}),
      and its mobile mode is already a single self-contained screen by design. */
-}
+/* } */
 
-@media (max-width: 900px) {
+/* @media (max-width: 900px) {
   .toolstack-section { padding: calc(var(--navbar-height) + var(--space-4)) var(--space-4) var(--space-8); }
 
   .toolstack-left { display: flex; flex-direction: column; }
@@ -2257,8 +2257,8 @@ body {
   .projects-section { padding: calc(var(--navbar-height) + var(--space-4)) var(--space-4) var(--space-8); }
   .projects-layout { grid-template-columns: 1fr; }
   .projects-deck-col { display: none; } /* only the dealt hand remains visible once the shuffle finishes */
-  .projects-hand-col { grid-template-columns: 1fr; gap: var(--space-4); }
+  /* .projects-hand-col { grid-template-columns: 1fr; gap: var(--space-4); }
   .project-card-v3-image { height: 90px; }
   .project-card-v3-body { padding: var(--space-4); }
   .shuffle-overlay--docked { left: 50%; }
-}
+} */  
