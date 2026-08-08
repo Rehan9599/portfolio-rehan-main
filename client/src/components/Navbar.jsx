@@ -1,9 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Mail, Sparkles, Menu, X } from 'lucide-react';
 import { useSectionScroll } from './SectionScrollContext';
+import { useMobilePager } from './MobileSectionPager';
+import { useIsMobile } from '../hooks/useIsMobile';
 
 export default function Navbar({ personalInfo }) {
-  const { activeId, goToId } = useSectionScroll();
+  const isMobile = useIsMobile(900);
+  const desktopCtx = useSectionScroll();
+  const mobileCtx = useMobilePager(); // null unless MobileSectionPager is actually mounted
+  const { activeId, goToId } = isMobile && mobileCtx ? mobileCtx : desktopCtx;
+
   const navRef = useRef(null);
   const [mobileOpen, setMobileOpen] = useState(false);
 

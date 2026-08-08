@@ -17,15 +17,27 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware
 const allowedOrigins = [
-  'http://localhost:5173', // Vite local development
-  'http://localhost:3000', // React local development
-  'https://rehanfazal.dev' // Azure Frontend URL
+  'http://localhost:3000', // React default (CRA)
+  'http://localhost:5173', // Vite default
+  'https://rehanfazal.dev',
+  'https://www.rehanfazal.dev'
 ];
 
 app.use(cors({
-  origin: 'https://rehanfazal.dev',
-  credentials: true,
-}));
+  origin: (origin, callback) => {
+    // Allow requests with no origin (like mobile apps, curl, or local postman)
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
+}))
+
+
 app.use(express.json());
 
 // Serve static assets (project images, certificates, etc.)
