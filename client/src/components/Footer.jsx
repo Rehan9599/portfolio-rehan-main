@@ -19,11 +19,11 @@ export default function Footer({ personalInfo }) {
   return (
     <footer className="footer-container">
       <div className="footer-inner">
-        <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.88rem', color: 'var(--text-subtle)' }}>
+        <div className='footer-inner-text' style={{ fontFamily: 'var(--font-mono)', fontSize: '0.88rem', color: 'var(--text-subtle)' }}>
           Designed & Built by <span style={{ color: 'var(--primary-accent)', fontWeight: 600 }}>Rehan Fazal</span> • CS @ JMI '28
         </div>
 
-        <div style={{ display: 'flex', gap: '1.25rem', alignItems: 'center' }}>
+        <div className='footer-icon-links'>
           <a 
             href={personalInfo.github} 
             target="_blank" 

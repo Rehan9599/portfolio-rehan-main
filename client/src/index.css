@@ -2130,6 +2130,7 @@ body {
 }
 
 @media (max-width: 900px) {
+
   .certificates-layout { grid-template-columns: 1fr; }
   .cert-sidebar {
     position: static;
@@ -2137,7 +2138,23 @@ body {
     flex-wrap: wrap;
     gap: var(--space-2);
   }
+
+  .cert-sidebar .section-heading{
+    margin-right: var(--space-12);
+  }
+
+  .cert-sidebar-btn{
+    font-size: 0.75rem;
+  }
+
+  .cert-card-v2 *{
+    font-size: 0.60rem;
+  }
+  .cert-card-v2-image-wrap{
+    height: 100px;
+  }
 }
+
 
 @media (max-width: 900px) {
   .journey-milestone-label,
@@ -2226,3 +2243,17 @@ body {
   cursor: wait;
 }
 
+.footer-icon-links{
+  display: flex; 
+  gap: 1.25rem;
+  align-items: center; 
+}
+@media (max-width: 900px) {
+  .footer-icon-links{
+    display: none;
+  }
+
+  .footer-inner-text{
+    margin-bottom: var(--space-12);
+  }
+}
