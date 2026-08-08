@@ -2065,7 +2065,10 @@ body {
 }
 
 @media (max-width: 900px) {
-  .toolstack-section { overflow: hidden; } /* inner container now owns the scroll, not this one */
+  .toolstack-section {
+    overflow: hidden;
+    padding: 0;
+  }
 
   .toolstack-layout {
     display: block;
@@ -2075,7 +2078,7 @@ body {
     -webkit-overflow-scrolling: touch;
   }
   .toolstack-clusters {
-    gap: var(--space-3);
+    gap: var(--space-1);
   }
   .toolstack-filters{
     gap: var(--space-3);
@@ -2105,7 +2108,7 @@ body {
   }
   .toolstack-cluster{
   display: grid;
-  grid-template-columns: repeat(3, 64px);
+  grid-template-columns: repeat(4, 64px);
   gap: var(--space-2);
   padding: var(--space-3);
   border-radius: var(--radius-12);
@@ -2118,7 +2121,7 @@ body {
     min-height: 100%;
     scroll-snap-align: start;
     scroll-snap-stop: always;
-    padding: var(--space-6) var(--space-4);
+    padding: var(--space-6) 0 var(--space-4) 0;
   }
 
   .toolstack-right {
@@ -2130,8 +2133,10 @@ body {
 }
 
 @media (max-width: 900px) {
-
-  .certificates-layout { grid-template-columns: 1fr; }
+  .certificates-section{
+    padding: var(--space-8) 0 var(--space-8) 0;
+  }
+  .certificates-layout { grid-template-columns: 1fr; gap: var(--space-2);}
   .cert-sidebar {
     position: static;
     flex-direction: row;
@@ -2140,18 +2145,34 @@ body {
   }
 
   .cert-sidebar .section-heading{
+    font-size: 2rem;
     margin-right: var(--space-12);
+    margin-left: var(--space-16);
   }
 
   .cert-sidebar-btn{
-    font-size: 0.75rem;
+    display: none;
+  }
+
+  .cert-page-arrow, .cert-page-number{
+    width: 28px;
+    height: 28px;
   }
 
   .cert-card-v2 *{
-    font-size: 0.60rem;
+    font-size: 0.70rem;
+  }
+  .cert-badge-pill{
+    font-size: 0.57rem;
+  }
+  .cert-card-v2-body{
+    padding: var(--space-2);
   }
   .cert-card-v2-image-wrap{
     height: 100px;
+  }
+  .cert-sidebar-btn.is-active{
+    font-weight: 500;
   }
 }
 
@@ -2163,16 +2184,18 @@ body {
     left: 50%;
     right: auto;
     transform: translateX(-50%);
-    text-align: center;
+    text-align: left;
     bottom: auto;
     top: calc(100% + 10px);
-    width: 160px;
+    width: 100px;
   }
-
-  .journey-axis-title { font-size: 10px; }
-  .journey-tick-label { font-size: 11px; }
-  .journey-milestone-title { font-size: 0.85rem; }
-  .journey-milestone-desc { font-size: 0.72rem; }
+  .journey-section{
+    padding: calc(var(--navbar-height)) 40px var(--space-12) 0;
+  }
+  .journey-axis-title { font-size: 8px; }
+  .journey-tick-label { font-size: 8px; }
+  .journey-milestone-title { font-size: 0.75rem; }
+  .journey-milestone-desc { font-size: 0.62rem; }
 }
 
 
@@ -2256,4 +2279,14 @@ body {
   .footer-inner-text{
     margin-bottom: var(--space-12);
   }
+
+  .contact-section{
+    padding: calc(var(--navbar-height)) 0 var(--space-6) 0;
+  }
+
+  .contact-card{
+    padding: var(--space-8) ;
+  }
+
+  
 }

@@ -47,7 +47,7 @@ export default function CertificatesSection({ certificates }) {
       <div className="app-container certificates-layout">
 
         <div className="cert-sidebar">
-          <h2 className="section-heading" style={{ fontSize: '1.6rem', marginBottom: 'var(--space-6)' }}>
+          <h2 className="section-heading">
             Certifications
           </h2>
           {CERT_CATEGORIES.map((cat) => (
