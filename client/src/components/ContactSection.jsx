@@ -5,6 +5,7 @@ import axios from 'axios';
 import Footer from './Footer';
 import { Input } from '../ui/components/input/input';
 import { Textarea } from '../ui/components/textarea/textarea';
+import API from '../api';
 
 export default function ContactSection({ personalInfo }) {
   const [submitted, setSubmitted] = useState(false);
@@ -18,7 +19,7 @@ export default function ContactSection({ personalInfo }) {
     setSending(true);
 
     try {
-      const response = await axios.post('/api/contact', formData);
+      const response = await API.post('/api/contact', formData);
       if (response.data.success) {
         setSubmitted(true);
         setTimeout(() => {
