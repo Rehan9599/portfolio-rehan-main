@@ -114,13 +114,13 @@ export default function App() {
   if (loading) return <LoadingScreen />;
   if (error) return <ErrorScreen message={error} />;
 
-  const { personalInfo, projects, certificates, journey } = data;
+  const { personalInfo, projects,skills, certificates, journeyText, journey } = data;
 
   const sections = (
     <>
       <HeroBento personalInfo={personalInfo} projects={projects} />
       <ProjectsSection projects={projects} />
-      <SkillsSection />
+      <SkillsSection skills={skills}/>
       <CertificatesSection certificates={certificates} />
       <JourneySection journey={journey} />
       <ContactSection personalInfo={personalInfo} />
