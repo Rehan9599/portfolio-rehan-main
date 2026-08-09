@@ -1,6 +1,6 @@
 # rehan.dev — MERN Stack Portfolio
 
-Full-stack portfolio built with **MongoDB**, **Express**, **React**, and **Node.js**.
+A full-stack, interaction-heavy portfolio built with modern frontend motion patterns, a custom data-driven backend, and clean API architecture.
 
 ## Project Structure
 
@@ -8,67 +8,43 @@ Full-stack portfolio built with **MongoDB**, **Express**, **React**, and **Node.
 portfolio/
 ├── client/          # React + Vite frontend
 ├── server/          # Express + MongoDB backend
-└── package.json     # Root scripts (concurrently)
+└── package.json     # Root orchestration scripts
 ```
 
-## Quick Start
+## Frontend Experience Stack
 
-### 1. Install all dependencies
+- **React 19 + Vite** for fast, modern UI architecture and performance.
+- **HeroBento layout** as the signature landing experience.
+- **Framer Motion** for staggered reveals, transitions, and interactive section animations.
+- **Lenis** smooth-scroll engine for fluid scroll behavior on mobile sections.
+- **Lucide React** iconography and consistent visual language.
+- **TerminalBoot intro + custom cursor trail + interaction audio** for a distinct personal-brand feel.
+- **Axios API layer + custom hooks** (`usePortfolioData`, responsive hooks) for clean data flow.
 
-```bash
-npm run install:all
-```
+## Optimistic UI Design System
 
-### 2. Set up MongoDB
+- A full **Optimistic UI component library** included in `client/src/ui/components`:
+  badges, cards, inputs, modals, drawers, tabs, tables, snackbars, loaders, and more.
+- Tokenized styling with dedicated `tokens.css` + scalable component CSS architecture.
+- Reusable UI primitives ready for future feature expansion.
 
-Make sure MongoDB is running locally, or update `server/.env` with your MongoDB Atlas URI:
+## Backend & Data Stack
 
-```env
-PORT=5000
-MONGO_URI=mongodb://localhost:27017/portfolio
-```
+- **Node.js + Express 4** API server with modular route design.
+- **MongoDB + Mongoose 8** models for portfolio content, skills, projects, certificates, journey, and contact messages.
+- **Parallelized data fetching** in portfolio API via `Promise.all` for better response performance.
+- **Nodemailer** integration for contact-form email notifications.
+- **CORS origin allowlist + dotenv configuration** for secure environment handling.
+- **Health endpoint and static asset serving** for reliability and deploy readiness.
 
-### 3. Seed the database
-
-```bash
-npm run seed
-```
-
-### 4. Start development
-
-```bash
-npm run dev
-```
-
-This starts both:
-- **Client** → `http://localhost:5173`
-- **Server** → `http://localhost:5000`
-
-## Available Scripts
-
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Start both client & server |
-| `npm run client` | Start client only |
-| `npm run server` | Start server only |
-| `npm run seed` | Seed MongoDB with portfolio data |
-| `npm run build` | Build client for production |
-| `npm run install:all` | Install all dependencies |
-
-## API Endpoints
+## API Surface
 
 | Method | Route | Description |
 |--------|-------|-------------|
-| GET | `/api/portfolio` | All portfolio data |
-| POST | `/api/contact` | Submit contact message |
-| GET | `/api/contact` | List all messages |
+| GET | `/api/portfolio` | Returns complete portfolio data payload |
+| POST | `/api/contact` | Accepts and stores contact messages + triggers email notification |
+| GET | `/api/contact` | Returns submitted contact messages |
 | GET | `/api/health` | Server health check |
-
-## Tech Stack
-
-- **Frontend:** React 19, Vite, Framer Motion, Lucide Icons, Axios
-- **Backend:** Express, Mongoose, CORS, dotenv
-- **Database:** MongoDB
 
 ---
 
