@@ -5,6 +5,7 @@ import GlobalInteractionSound from './components/GlobalInteractionSound';
 import ContactDock from './components/ContactDock';
 import Navbar from './components/Navbar';
 import { SectionScrollProvider, SectionTrack } from './components/SectionScrollContext';
+import {MobilePagerProvider, MobilePagerTrack } from './components/MobileSectionPager';
 import HeroBento from './components/HeroBento';
 import ProjectsSection from './components/ProjectsSection';
 import SkillsSection from './components/SkillsSection';
@@ -12,42 +13,25 @@ import CertificatesSection from './components/CertificatesSection';
 import JourneySection from './components/JourneySection';
 import ContactSection from './components/ContactSection';
 import usePortfolioData from './hooks/usePortfolioData';
+import { useIsMobile } from './hooks/useIsMobile';
 import AnimatedBackground from './components/AnimatedBackground';
 
 const SECTION_IDS = ['about', 'projects', 'skills', 'certificates', 'journey', 'contact'];
 
-
 function LoadingScreen() {
   return (
     <div style={{
-      minHeight: '100vh',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      background: 'var(--bg-color)',
-      gap: '1.5rem'
+      minHeight: '100vh', display: 'flex', flexDirection: 'column',
+      alignItems: 'center', justifyContent: 'center', background: 'var(--bg-color)', gap: '1.5rem'
     }}>
       <div style={{
-        width: '52px',
-        height: '52px',
-        border: '3px solid rgba(255,255,255,0.1)',
-        borderTopColor: 'var(--primary-accent)',
-        borderRadius: '50%',
-        animation: 'spin 0.8s linear infinite'
+        width: '52px', height: '52px', border: '3px solid rgba(255,255,255,0.1)',
+        borderTopColor: 'var(--primary-accent)', borderRadius: '50%', animation: 'spin 0.8s linear infinite'
       }} />
-      <span style={{
-        fontFamily: 'var(--font-mono)',
-        fontSize: '0.95rem',
-        color: 'var(--text-muted)'
-      }}>
+      <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.95rem', color: 'var(--text-muted)' }}>
         Initializing portfolio...
       </span>
-      <style>{`
-        @keyframes spin {
-          to { transform: rotate(360deg); }
-        }
-      `}</style>
+      <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
     </div>
   );
 }
@@ -55,27 +39,13 @@ function LoadingScreen() {
 function ErrorScreen({ message }) {
   return (
     <div style={{
-      minHeight: '100vh',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      background: 'var(--bg-color)',
-      gap: '1.25rem',
-      padding: '0 1.5rem'
+      minHeight: '100vh', display: 'flex', flexDirection: 'column',
+      alignItems: 'center', justifyContent: 'center', background: 'var(--bg-color)', gap: '1.25rem', padding: '0 1.5rem'
     }}>
       <div style={{
-        width: '60px',
-        height: '60px',
-        borderRadius: '1.25rem',
-        background: 'rgba(239, 68, 68, 0.12)',
-        border: '1px solid rgba(239, 68, 68, 0.3)',
-        color: '#ef4444',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        fontSize: '1.75rem',
-        fontWeight: 'bold'
+        width: '60px', height: '60px', borderRadius: '1.25rem', background: 'rgba(239, 68, 68, 0.12)',
+        border: '1px solid rgba(239, 68, 68, 0.3)', color: '#ef4444', display: 'flex',
+        alignItems: 'center', justifyContent: 'center', fontSize: '1.75rem', fontWeight: 'bold'
       }}>!</div>
       <h2 style={{ color: '#ffffff', fontSize: '1.4rem' }}>Connection Notice</h2>
       <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', maxWidth: '450px', textAlign: 'center', lineHeight: '1.6' }}>
@@ -84,17 +54,10 @@ function ErrorScreen({ message }) {
       <button
         onClick={() => window.location.reload()}
         style={{
-          marginTop: '0.5rem',
-          padding: '0.75rem 1.75rem',
-          borderRadius: '0.75rem',
-          background: 'var(--surface-color)',
-          border: '1px solid var(--border-color)',
-          color: 'var(--primary-accent)',
-          cursor: 'pointer',
-          fontFamily: 'var(--font-mono)',
-          fontSize: '0.9rem',
-          fontWeight: '600',
-          transition: 'all 0.2s ease'
+          marginTop: '0.5rem', padding: '0.75rem 1.75rem', borderRadius: '0.75rem',
+          background: 'var(--surface-color)', border: '1px solid var(--border-color)',
+          color: 'var(--primary-accent)', cursor: 'pointer', fontFamily: 'var(--font-mono)',
+          fontSize: '0.9rem', fontWeight: '600', transition: 'all 0.2s ease'
         }}
       >
         Reload Page
@@ -102,9 +65,11 @@ function ErrorScreen({ message }) {
     </div>
   );
 }
+
 export default function App() {
   const { data, loading, error } = usePortfolioData();
   const [bootDone, setBootDone] = useState(false);
+  const isMobile = useIsMobile(900);
 
   if (!bootDone) {
     return <TerminalBoot onComplete={() => setBootDone(true)} />;
@@ -113,27 +78,38 @@ export default function App() {
   if (loading) return LoadingScreen();
   if (error) return ErrorScreen();
 
-  const { personalInfo, projects,skills, certificates, journeyText, journey } = data;
+  const { personalInfo, projects, skills, certificates, journeyText, journey } = data;
+
+  // Plain array, NOT a Fragment (<>...</>) — Children.toArray, used inside
+  // both SectionTrack and MobileSectionPager, does not flatten Fragments.
+  // An array of 6 elements gives both a real count of 6; a Fragment gave
+  // them a count of 1, which was the root cause of both the desktop
+  // stuck-on-Hero bug and the mobile no-horizontal-slide bug.
+  const sections = [
+    <HeroBento key="about" personalInfo={personalInfo} projects={projects} />,
+    <ProjectsSection key="projects" projects={projects} />,
+    <SkillsSection key="skills" skills={skills} />,
+    <CertificatesSection key="certificates" certificates={certificates} />,
+    <JourneySection key="journey" journey={journey} />,
+    <ContactSection key="contact" personalInfo={personalInfo} />,
+  ];
 
   return (
-    <SectionScrollProvider sectionIds={SECTION_IDS}>
-      <div className="portfolio-app">
-        <CursorTrail />
-        {/* <AnimatedBackground /> */}
-        <GlobalInteractionSound />
-        <ContactDock personalInfo={personalInfo} />
-        <Navbar personalInfo={personalInfo} />
-        <main>
-          <SectionTrack>
-            <HeroBento personalInfo={personalInfo} projects={projects} />
-            <ProjectsSection projects={projects} />
-            <SkillsSection skills={skills} />
-            <CertificatesSection certificates={certificates} />
-            <JourneySection journey={journey}/>
-            <ContactSection personalInfo={personalInfo} />
-          </SectionTrack>
-        </main>
-      </div>
+     <SectionScrollProvider sectionIds={SECTION_IDS}>
+      <MobilePagerProvider sectionIds={SECTION_IDS}>
+        <div className="portfolio-app">
+          <CursorTrail />
+          {/* <AnimatedBackground /> */}
+          <GlobalInteractionSound />
+          <ContactDock personalInfo={personalInfo} />
+          <Navbar personalInfo={personalInfo} />
+          <main>
+            {isMobile
+              ? <MobilePagerTrack>{sections}</MobilePagerTrack>
+              : <SectionTrack>{sections}</SectionTrack>}
+          </main>
+        </div>
+      </MobilePagerProvider>
     </SectionScrollProvider>
   );
 }
