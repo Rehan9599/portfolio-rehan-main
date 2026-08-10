@@ -236,18 +236,14 @@ body {
   max-width: 100%;
 }
 
-/* App Main Margin to clear fixed header */
-/* .portfolio-app main {
-  padding-top: 2rem;
-} */
 
 /* Responsive Queries */
-@media (max-width: 1200px) {
+@media (max-width: 900px) {
   .app-container {
-    padding: 0 2rem;
+    padding: 0.5rem 2rem;
   }
   .navbar-inner, .footer-container {
-    padding: 1rem 2rem;
+    padding: 0.7rem 2rem;
   }
 }
 
@@ -266,23 +262,7 @@ body {
   }
 }
 
-@media (max-width: 600px) {
-  .app-container {
-    padding: 0 1.25rem;
-  }
-  .navbar-inner, .footer-container {
-    padding: 0.9rem 1.25rem;
-  }
-  .bento-stat-card {
-    grid-column: span 12;
-  }
-  .journey-metrics-row {
-    grid-template-columns: 1fr;
-  }
-  .section-heading {
-    font-size: 2rem;
-  }
-}
+
 
 
 .hero-layout {
@@ -2084,32 +2064,32 @@ body {
     gap: var(--space-3);
   }
   .toolstack-filter-btn{
-    font-size: 0.7rem;
+    font-size: 0.78rem;
   }
 
   .toolstack-subtitle{
-    font-size: 0.8rem;
+    font-size: 0.85rem;
   }
   .toolstack-key {
-    width: 60px;
-    height: 60px;
+    width: 70px;
+    height: 70px;
   }
   .toolstack-key-label{
-    font-size: 1rem;
-    font-weight: 500;
+    font-size: 1.2rem;
+    font-weight: 700;
   }
   .toolstack-key-name {
-    font-size: 0.48rem;
+    font-size: 0.60rem;
   }
   .toolstack-key-index{
     top: 3px;
     left: 3px;
-    font-size: 0.55rem;
+    font-size: 0.75rem;
   }
   .toolstack-cluster{
   display: grid;
-  grid-template-columns: repeat(4, 64px);
-  gap: var(--space-2);
+  grid-template-columns: repeat(3, 64px);
+  gap: var(--space-6);
   padding: var(--space-3);
   border-radius: var(--radius-12);
   border: 1px dashed transparent;
@@ -2124,12 +2104,10 @@ body {
     padding: var(--space-6) 0 var(--space-4) 0;
   }
 
-  .toolstack-right {
+  .toolstack-right{
     display: none;
-    grid-template-columns: repeat(2, 1fr);
-    justify-content: center;
-    align-content: center;
   }
+
 }
 
 @media (max-width: 900px) {
@@ -2160,7 +2138,7 @@ body {
   }
 
   .cert-card-v2 *{
-    font-size: 0.70rem;
+    font-size: 0.72rem;
   }
   .cert-badge-pill{
     font-size: 0.57rem;
@@ -2169,7 +2147,7 @@ body {
     padding: var(--space-2);
   }
   .cert-card-v2-image-wrap{
-    height: 100px;
+    height: 150px;
   }
   .cert-sidebar-btn.is-active{
     font-weight: 500;
@@ -2301,7 +2279,7 @@ body {
   display: flex;
   height: 100%;
   width: 100%;
-  transition: transform 450ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1), opacity 280ms ease;
 }
 
 .mobile-pager-page {
@@ -2333,4 +2311,10 @@ body {
 }
 .mobile-pager-page-inner {
   height: 100%;
+}
+
+@media (max-width: 900px) {
+  .projects-layout {
+    min-height: 60vh; 
+  }
 }

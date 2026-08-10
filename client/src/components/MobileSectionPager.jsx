@@ -10,16 +10,33 @@ const SWIPE_THRESHOLD_PX = 40;
 const TRANSITION_MS = 450;
 const EDGE_EPSILON = 0.02;
 
+const DIM_MS = 80;      // fade-out duration
+const HOLD_MS = 150;     // the actual pause/delay between sections — tune this one
+const REVEAL_MS = 120;   // fade-in + slide duration, happen together
+const DIM_OPACITY = 0.82;
+
 export function MobilePagerProvider({ children, sectionIds }) {
   const [index, setIndex] = useState(0);
+  const [phase, setPhase] = useState('idle'); // idle | dimming | holding | revealing
   const lockedRef = useRef(false);
 
   const goTo = (next) => {
     const clamped = Math.max(0, Math.min(sectionIds.length - 1, next));
     if (clamped === index || lockedRef.current) return;
     lockedRef.current = true;
-    setIndex(clamped);
-    setTimeout(() => { lockedRef.current = false; }, TRANSITION_MS);
+
+    setPhase('dimming');
+    setTimeout(() => {
+      setPhase('holding');
+      setTimeout(() => {
+        setIndex(clamped);      // slide target changes now, while still dimmed — invisible jump
+        setPhase('revealing');  // opacity fades up WHILE the slide transition plays, together
+        setTimeout(() => {
+          setPhase('idle');
+          lockedRef.current = false;
+        }, REVEAL_MS);
+      }, HOLD_MS);
+    }, DIM_MS);
   };
 
   const goToId = (id) => {
@@ -28,15 +45,16 @@ export function MobilePagerProvider({ children, sectionIds }) {
   };
 
   return (
-    <MobilePagerContext.Provider value={{ activeId: sectionIds[index], index, goTo, goToId, lockedRef }}>
+    <MobilePagerContext.Provider value={{ activeId: sectionIds[index], index, phase, goTo, goToId, lockedRef }}>
       {children}
     </MobilePagerContext.Provider>
   );
 }
 
+
+
 function MobilePage({ children, active, onAdvance, onRetreat, lockedRef }) {
   const scrollRef = useRef(null);
-  const progressRef = useRef(0);
   const touchStartY = useRef(null);
 
   useEffect(() => {
@@ -48,8 +66,6 @@ function MobilePage({ children, active, onAdvance, onRetreat, lockedRef }) {
       duration: 1.0,
       touchMultiplier: 1,
     });
-
-    lenis.on('scroll', ({ progress }) => { progressRef.current = progress; });
 
     let rafId;
     const raf = (time) => { lenis.raf(time); rafId = requestAnimationFrame(raf); };
@@ -70,8 +86,12 @@ function MobilePage({ children, active, onAdvance, onRetreat, lockedRef }) {
       touchStartY.current = null;
       if (Math.abs(deltaY) < SWIPE_THRESHOLD_PX) return;
 
-      const atBottom = progressRef.current >= 1 - EDGE_EPSILON;
-      const atTop = progressRef.current <= EDGE_EPSILON;
+      // Read real scroll position directly, no async callback in the loop.
+      // When scrollHeight <= clientHeight (e.g. Journey — content fits one
+      // screen exactly), both conditions are naturally true, so any
+      // qualifying swipe in either direction correctly advances/retreats.
+      const atBottom = el.scrollHeight - el.scrollTop - el.clientHeight <= 2;
+      const atTop = el.scrollTop <= 2;
 
       if (deltaY > 0 && atBottom) onAdvance();
       else if (deltaY < 0 && atTop) onRetreat();
@@ -92,15 +112,24 @@ function MobilePage({ children, active, onAdvance, onRetreat, lockedRef }) {
   );
 }
 
+
 export function MobilePagerTrack({ children }) {
   const ctx = useMobilePager();
   if (!ctx) throw new Error('MobilePagerTrack must be used within MobilePagerProvider');
-  const { index, goTo, lockedRef } = ctx;
+  const { index, phase, goTo, lockedRef } = ctx;
   const pages = Children.toArray(children);
+
+  const trackOpacity = phase === 'dimming' || phase === 'holding' ? DIM_OPACITY : 1;
 
   return (
     <div className="mobile-pager-viewport">
-      <div className="mobile-pager-track" style={{ transform: `translateX(-${index * 100}%)` }}>
+      <div
+        className="mobile-pager-track"
+        style={{
+          transform: `translateX(-${index * 100}%)`,
+          opacity: trackOpacity,
+        }}
+      >
         {pages.map((page, i) => (
           <MobilePage key={i} active={i === index} onAdvance={() => goTo(i + 1)} onRetreat={() => goTo(i - 1)} lockedRef={lockedRef}>
             {page}
