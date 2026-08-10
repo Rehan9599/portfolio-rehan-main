@@ -1,7 +1,7 @@
 # rehan.dev — MERN Stack Portfolio
 
 A full-stack, interaction-heavy portfolio built with modern frontend motion patterns, a custom data-driven backend, and clean API architecture.
-
+live at [rehanfazal.dev](https://rehanfazal.dev)
 ## Project Structure
 
 ```
