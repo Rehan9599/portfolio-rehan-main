@@ -2318,3 +2318,11 @@ body {
     min-height: 60vh; 
   }
 }
+
+html, body {
+  overscroll-behavior-y: none;
+}
+
+.mobile-pager-page {
+  overscroll-behavior-y: contain;
+}
