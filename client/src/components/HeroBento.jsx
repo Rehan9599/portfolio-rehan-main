@@ -176,6 +176,8 @@ export default function HeroBento({ personalInfo, projects = [] }) {
                     src={featuredProject.image}
                     alt={`${featuredProject.title} preview`}
                     className="featured-thumb"
+                    loading="lazy"
+                    decoding="async"
                     onError={(e) => { e.currentTarget.style.display = 'none'; }}
                   />
                 ) : (
@@ -218,7 +220,11 @@ export default function HeroBento({ personalInfo, projects = [] }) {
                 <div key={`${tech.slug}-${i}`} className="tech-stack-icon" title={tech.name}>
                   <img
                     src={`https://cdn.simpleicons.org/${tech.slug}/ffffff`}
-                    alt={tech.name}
+                    alt=""
+                    width="32"
+                    height="30"
+                    loading="lazy"
+                    decoding="async"
                     onError={(e) => { e.currentTarget.style.display = 'none'; }}
                   />
                 </div>
@@ -234,6 +240,8 @@ export default function HeroBento({ personalInfo, projects = [] }) {
                 src={`https://ghchart.rshah.org/FF7A00/${githubUsername}`}
                 alt={`${githubUsername}'s GitHub contribution graph`}
                 className="github-activity-graph"
+                loading="lazy"
+                decoding="async"
                 onError={(e) => { e.currentTarget.style.display = 'none'; }}
               />
             ) : (

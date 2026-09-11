@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Send, CheckCircle2, AlertCircle } from 'lucide-react';
-import axios from 'axios';
 import Footer from './Footer';
 import { Input } from '../ui/components/input/input';
 import { Textarea } from '../ui/components/textarea/textarea';
@@ -11,7 +10,7 @@ export default function ContactSection({ personalInfo }) {
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState(null);
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', message: '', website: '' });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,7 +23,7 @@ export default function ContactSection({ personalInfo }) {
         setSubmitted(true);
         setTimeout(() => {
           setSubmitted(false);
-          setFormData({ name: '', email: '', message: '' });
+          setFormData({ name: '', email: '', message: '', website: '' });
         }, 4000);
       }
     } catch (err) {
@@ -88,6 +87,19 @@ export default function ContactSection({ personalInfo }) {
                 placeholder="Tell me about your project or opportunity..."
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+              />
+
+              {/* Honeypot: invisible to people, irresistible to bots. The server
+                  silently discards any submission that fills it in. */}
+              <input
+                type="text"
+                name="website"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                className="contact-honeypot"
+                value={formData.website}
+                onChange={(e) => setFormData({ ...formData, website: e.target.value })}
               />
 
               <button type="submit" className="btn btn-primary contact-submit" disabled={sending}>

@@ -78,6 +78,8 @@ export default function CertificatesSection({ certificates }) {
                       src={cert.image}
                       alt={`${cert.title} certificate`}
                       className="cert-card-v2-image"
+                      loading="lazy"
+                      decoding="async"
                       onError={(e) => { e.currentTarget.style.display = 'none'; }}
                     />
                   ) : (

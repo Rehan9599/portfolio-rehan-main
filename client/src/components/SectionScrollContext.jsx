@@ -6,7 +6,10 @@ export function SectionScrollProvider({ children, sectionIds }) {
   const [activeId, setActiveId] = useState(sectionIds[0]);
 
   useEffect(() => {
-    const handleScroll = () => {
+    let frame = null;
+
+    const measure = () => {
+      frame = null;
       const triggerLine = window.innerHeight * 0.4;
       let current = sectionIds[0];
 
@@ -17,12 +20,23 @@ export function SectionScrollProvider({ children, sectionIds }) {
         if (rect.top <= triggerLine) current = id;
       }
 
-      setActiveId(current);
+      // Only re-render when the active section actually changes; the raw
+      // handler was calling setState on every scroll event.
+      setActiveId((prev) => (prev === current ? prev : current));
     };
 
-    handleScroll();
+    // getBoundingClientRect() on every section forces a layout, so coalesce
+    // the scroll events into at most one measurement per animation frame.
+    const handleScroll = () => {
+      if (frame === null) frame = requestAnimationFrame(measure);
+    };
+
+    measure();
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      if (frame !== null) cancelAnimationFrame(frame);
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, [sectionIds]);
 
 // SectionScrollContext.jsx — only goToId changes

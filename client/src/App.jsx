@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import TerminalBoot from './components/TerminalBoot';
+import TerminalBoot, { shouldPlayBoot } from './components/TerminalBoot';
 import CursorTrail from './components/CursorTrail';
 import GlobalInteractionSound from './components/GlobalInteractionSound';
 import ContactDock from './components/ContactDock';
@@ -18,67 +18,16 @@ import AnimatedBackground from './components/AnimatedBackground';
 
 const SECTION_IDS = ['about', 'projects', 'skills', 'certificates', 'journey', 'contact'];
 
-function LoadingScreen() {
-  return (
-    <div style={{
-      minHeight: '100vh', display: 'flex', flexDirection: 'column',
-      alignItems: 'center', justifyContent: 'center', background: 'var(--bg-color)', gap: '1.5rem'
-    }}>
-      <div style={{
-        width: '52px', height: '52px', border: '3px solid rgba(255,255,255,0.1)',
-        borderTopColor: 'var(--primary-accent)', borderRadius: '50%', animation: 'spin 0.8s linear infinite'
-      }} />
-      <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.95rem', color: 'var(--text-muted)' }}>
-        Initializing portfolio...
-      </span>
-      <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
-    </div>
-  );
-}
-
-function ErrorScreen({ message }) {
-  return (
-    <div style={{
-      minHeight: '100vh', display: 'flex', flexDirection: 'column',
-      alignItems: 'center', justifyContent: 'center', background: 'var(--bg-color)', gap: '1.25rem', padding: '0 1.5rem'
-    }}>
-      <div style={{
-        width: '60px', height: '60px', borderRadius: '1.25rem', background: 'rgba(239, 68, 68, 0.12)',
-        border: '1px solid rgba(239, 68, 68, 0.3)', color: '#ef4444', display: 'flex',
-        alignItems: 'center', justifyContent: 'center', fontSize: '1.75rem', fontWeight: 'bold'
-      }}>!</div>
-      <h2 style={{ color: '#ffffff', fontSize: '1.4rem' }}>Connection Notice</h2>
-      <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', maxWidth: '450px', textAlign: 'center', lineHeight: '1.6' }}>
-        {message || 'Unable to fetch data from the server. Please check your backend connection.'}
-      </p>
-      <button
-        onClick={() => window.location.reload()}
-        style={{
-          marginTop: '0.5rem', padding: '0.75rem 1.75rem', borderRadius: '0.75rem',
-          background: 'var(--surface-color)', border: '1px solid var(--border-color)',
-          color: 'var(--primary-accent)', cursor: 'pointer', fontFamily: 'var(--font-mono)',
-          fontSize: '0.9rem', fontWeight: '600', transition: 'all 0.2s ease'
-        }}
-      >
-        Reload Page
-      </button>
-    </div>
-  );
-}
-
 export default function App() {
-  const { data, loading, error } = usePortfolioData();
-  const [bootDone, setBootDone] = useState(false);
+  const { data } = usePortfolioData();
+  const [bootDone, setBootDone] = useState(() => !shouldPlayBoot());
   const isMobile = useIsMobile(900);
 
   if (!bootDone) {
     return <TerminalBoot onComplete={() => setBootDone(true)} />;
   }
 
-  if (loading) return LoadingScreen();
-  if (error) return ErrorScreen();
-
-  const { personalInfo, projects, skills, certificates, journeyText, journey } = data;
+  const { personalInfo, projects, skills, certificates, journey } = data;
 
   // Plain array, NOT a Fragment (<>...</>) — Children.toArray, used inside
   // both SectionTrack and MobileSectionPager, does not flatten Fragments.
@@ -103,7 +52,8 @@ export default function App() {
           <GlobalInteractionSound />
           <ContactDock personalInfo={personalInfo} />
           <Navbar personalInfo={personalInfo} />
-          <main>
+          <a className="skip-to-content" href="#main-content">Skip to content</a>
+          <main id="main-content">
             {isMobile
               ? <MobilePagerTrack>{sections}</MobilePagerTrack>
               : <SectionTrack>{sections}</SectionTrack>}

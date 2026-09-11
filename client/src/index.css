@@ -2326,3 +2326,108 @@ html, body {
 .mobile-pager-page {
   overscroll-behavior-y: contain;
 }
+/* --- Interface sound toggle (navbar) --------------------------------- */
+/* Sound defaults to off; this makes the choice visible and reversible
+   instead of surprising visitors with a tone on every hover. */
+.nav-sound-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  margin-left: var(--space-2);
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-8);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.nav-sound-toggle:hover,
+.nav-sound-toggle:focus-visible {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.nav-sound-toggle[aria-pressed='true'] {
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+}
+
+/* --- Keyboard focus ---------------------------------------------------- */
+/* Every nav item, card link and form control is reachable by Tab; without a
+   visible ring the focused element is impossible to locate on a dark theme. */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-4, 4px);
+}
+
+/* --- Skip link --------------------------------------------------------- */
+.skip-to-content {
+  position: absolute;
+  left: var(--space-4);
+  top: -100%;
+  z-index: 10000;
+  padding: var(--space-3) var(--space-4);
+  background: var(--surface-overlay, #111);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-8);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  text-decoration: none;
+}
+
+.skip-to-content:focus {
+  top: var(--space-4);
+}
+
+/* --- Reduced motion ---------------------------------------------------- */
+/* The site leans hard on transforms, staggered reveals and a canvas cursor
+   trail. Honour the OS-level request to tone all of that down. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* --- Terminal intro skip ----------------------------------------------- */
+.terminal-boot-skip {
+  position: absolute;
+  bottom: var(--space-8);
+  left: 50%;
+  transform: translateX(-50%);
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-8);
+  padding: var(--space-2) var(--space-4);
+  color: var(--text-subtle, var(--text-secondary));
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.terminal-boot-skip:hover,
+.terminal-boot-skip:focus-visible {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* Honeypot field — off-screen rather than display:none, which some bots skip. */
+.contact-honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}

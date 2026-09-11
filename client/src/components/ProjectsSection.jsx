@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink, Shuffle } from 'lucide-react';
 const Github = ({ size = 18 }) => (
@@ -30,7 +30,7 @@ function ProjectDetailCard({ proj }) {
   return (
     <>
       {proj.image ? (
-        <img src={proj.image} alt={`${proj.title} preview`} className="project-card-v3-image" />
+        <img src={proj.image} alt={`${proj.title} preview`} className="project-card-v3-image" loading="lazy" decoding="async" />
       ) : (
         <div className="project-card-v3-image project-card-v3-image--placeholder" />
       )}
@@ -68,6 +68,17 @@ export default function ProjectsSection({ projects }) {
   const [phase, setPhase] = useState('idle');
   const [hoveredLeftover, setHoveredLeftover] = useState(null);
   const hasStarted = useRef(false);
+
+  // The app paints from a build-time snapshot first and swaps in live data
+  // when the API answers, so this section has to pick up a changed project
+  // list rather than keeping whatever it was seeded with.
+  useEffect(() => {
+    setPool(projects);
+    if (hasStarted.current) {
+      setHand(projects.slice(0, HAND_SIZE));
+      setLeftover(projects.slice(HAND_SIZE));
+    }
+  }, [projects]);
 
   const dealFrom = (sourcePool) => {
     setHand(sourcePool.slice(0, HAND_SIZE));
@@ -166,7 +177,7 @@ export default function ProjectsSection({ projects }) {
                         onMouseLeave={() => setHoveredLeftover(null)}
                       >
                         {proj.image ? (
-                          <img src={proj.image} alt={`${proj.title} preview`} className="project-card-v3-image" />
+                          <img src={proj.image} alt={`${proj.title} preview`} className="project-card-v3-image" loading="lazy" decoding="async" />
                         ) : (
                           <div className="project-card-v3-image project-card-v3-image--placeholder" />
                         )}

@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Mail, Sparkles, Menu, X } from 'lucide-react';
+import { Mail, Sparkles, Menu, X, Volume2, VolumeX } from 'lucide-react';
 import { useSectionScroll } from './SectionScrollContext';
 import { useMobilePager } from './MobileSectionPager';
 import { useIsMobile } from '../hooks/useIsMobile';
+import { useSoundPreference } from '../hooks/useSoundPreference';
 
 export default function Navbar({ personalInfo }) {
    const isMobile = useIsMobile(900);
@@ -11,6 +12,7 @@ export default function Navbar({ personalInfo }) {
   const { activeId, goToId } = isMobile && mobileCtx ? mobileCtx : desktopCtx;
   const navRef = useRef(null);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [soundOn, toggleSound] = useSoundPreference();
 
   useEffect(() => {
     const setHeightVar = () => {
@@ -53,6 +55,16 @@ export default function Navbar({ personalInfo }) {
             <Mail size={14} /> Contact
           </button>
         </nav>
+
+        <button
+          className="nav-sound-toggle"
+          onClick={toggleSound}
+          aria-label={soundOn ? 'Mute interface sounds' : 'Enable interface sounds'}
+          aria-pressed={soundOn}
+          title={soundOn ? 'Sound on' : 'Sound off'}
+        >
+          {soundOn ? <Volume2 size={17} /> : <VolumeX size={17} />}
+        </button>
 
         <button
           className="nav-hamburger"

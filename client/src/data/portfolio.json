@@ -1,0 +1,552 @@
+{
+  "personalInfo": {
+    "_id": "6a721e5226ffc49aaed91fad",
+    "name": "Rehan Fazal",
+    "brand": "rehan.dev",
+    "terminalUser": "~/rehan-fazal $ whoami",
+    "role": "B.Tech Computer Engineering student — full-stack (MERN) developer, now going deep on DSA and shifting into AI/ML. Along the way, I picked up a real love for web design.",
+    "location": "Delhi, India",
+    "university": "Jamia Millia Islamia (JMI '28)",
+    "github": "https://github.com/Rehan9599",
+    "linkedin": "https://www.linkedin.com/in/rehan-fazal-09425532a/",
+    "email": "rehanfazal9599@gmail.com",
+    "quote": "Building things that work, then making them beautiful.",
+    "journeyText": "I started with the MERN stack, shipping full projects end to end. Somewhere along the way, solving algorithmic problems every day became its own habit — and that habit pulled me toward the math and models behind AI/ML. I'm currently splitting my time between DSA practice and learning the fundamentals of machine learning, one problem set and one paper at a time.",
+    "currentFocus": " Diving deep into Machine Learning & Data Structures — personalize this line  /Rehan",
+    "stats": {
+      "projectsShipped": "12+",
+      "mernExperience": "2 yrs",
+      "mlAccuracy": "92%",
+      "skillAreas": "5",
+      "dsaSolved": "350+",
+      "dsaStreak": "60+"
+    },
+    "createdAt": "2026-08-04T17:16:02.652Z",
+    "updatedAt": "2026-08-04T17:16:02.652Z",
+    "__v": 0
+  },
+  "projects": [
+    {
+      "_id": "6a721e5226ffc49aaed91faf",
+      "projectId": "01",
+      "title": "Smart Room Allotment",
+      "description": "Intelligent room allocation web application for hostels and educational facilities, streamlining student housing.",
+      "tags": [
+        "JavaScript",
+        "HTML5",
+        "CSS3",
+        "Node.js"
+      ],
+      "github": "https://github.com/MdFareedKhan01/smart-room-allotment",
+      "demo": "#",
+      "featured": true,
+      "image": "/assets/projects/dormengine.png",
+      "order": 1,
+      "__v": 0,
+      "createdAt": "2026-08-04T17:16:02.722Z",
+      "updatedAt": "2026-08-04T17:16:02.722Z"
+    },
+    {
+      "_id": "6a721e5226ffc49aaed91fb0",
+      "projectId": "02",
+      "title": "Keeper App",
+      "description": "Modern, responsive note-taking application inspired by Google Keep built with component-driven architecture.",
+      "tags": [
+        "React",
+        "CSS3",
+        "CodeSandbox"
+      ],
+      "github": "https://github.com/Rehan9599/KeeperApp",
+      "demo": "#",
+      "featured": true,
+      "image": "/assets/projects/dormengine.png",
+      "order": 2,
+      "__v": 0,
+      "createdAt": "2026-08-04T17:16:02.722Z",
+      "updatedAt": "2026-08-04T17:16:02.722Z"
+    },
+    {
+      "_id": "6a721e5226ffc49aaed91fb1",
+      "projectId": "03",
+      "title": "ReadyCool",
+      "description": "Web application tailored for custom cooling and system monitoring routines.",
+      "tags": [
+        "React",
+        "Node.js",
+        "Express"
+      ],
+      "github": "https://github.com/Rehan9599/SIRS_Z",
+      "demo": "#",
+      "featured": true,
+      "image": "/assets/projects/readycool.png",
+      "order": 3,
+      "__v": 0,
+      "createdAt": "2026-08-04T17:16:02.722Z",
+      "updatedAt": "2026-08-04T17:16:02.722Z"
+    },
+    {
+      "_id": "6a721e5226ffc49aaed91fb2",
+      "projectId": "04",
+      "title": "Anime Tier List",
+      "description": "Interactive tier-list maker allowing users to rank, organize, and share their favorite anime shows.",
+      "tags": [
+        "React",
+        "JavaScript",
+        "Tailwind CSS"
+      ],
+      "github": "https://github.com/Rehan9599/ANIme-tier-list",
+      "demo": "#",
+      "featured": true,
+      "image": "/assets/projects/anime-tier-list.png",
+      "order": 4,
+      "__v": 0,
+      "createdAt": "2026-08-04T17:16:02.722Z",
+      "updatedAt": "2026-08-04T17:16:02.722Z"
+    },
+    {
+      "_id": "6a721e5226ffc49aaed91fb3",
+      "projectId": "05",
+      "title": "Personal Portfolio",
+      "description": "Interactive developer portfolio showcasing full-stack applications, DSA progress, and certificates.",
+      "tags": [
+        "React",
+        "Node.js",
+        "MongoDB",
+        "Tailwind CSS"
+      ],
+      "github": "https://github.com/Rehan9599/portfolio",
+      "demo": "#",
+      "featured": true,
+      "image": "/assets/projects/portfolio.png",
+      "order": 5,
+      "__v": 0,
+      "createdAt": "2026-08-04T17:16:02.722Z",
+      "updatedAt": "2026-08-04T17:16:02.722Z"
+    },
+    {
+      "_id": "6a721e5226ffc49aaed91fb4",
+      "projectId": "06",
+      "title": "Secrets Authentication",
+      "description": "Secure web platform featuring level 6 authentication, OAuth integration, and secret message persistence.",
+      "tags": [
+        "Node.js",
+        "Express",
+        "EJS",
+        "Passport.js"
+      ],
+      "github": "https://github.com/Rehan9599/Secrets-Project",
+      "demo": "#",
+      "featured": true,
+      "image": "/assets/projects/dormengine.png",
+      "order": 6,
+      "__v": 0,
+      "createdAt": "2026-08-04T17:16:02.722Z",
+      "updatedAt": "2026-08-04T17:16:02.722Z"
+    },
+    {
+      "_id": "6a721e5226ffc49aaed91fb5",
+      "projectId": "07",
+      "title": "Authentication",
+      "description": "Secure web platform featuring level 6 authentication, OAuth integration, and secret message persistence.",
+      "tags": [
+        "Node.js",
+        "Express",
+        "EJS",
+        "Passport.js"
+      ],
+      "github": "https://github.com/Rehan9599/Secrets-Project",
+      "demo": "#",
+      "featured": true,
+      "image": "/assets/projects/dormengine.png",
+      "order": 7,
+      "__v": 0,
+      "createdAt": "2026-08-04T17:16:02.723Z",
+      "updatedAt": "2026-08-04T17:16:02.723Z"
+    }
+  ],
+  "skills": {
+    "other": [
+      {
+        "_id": "6a721e5226ffc49aaed91fc0",
+        "key": "softwareDev",
+        "label": "software development",
+        "items": [
+          {
+            "label": "Lx",
+            "name": "linux",
+            "logo": "linux",
+            "_id": "6a721e5226ffc49aaed91fc1"
+          },
+          {
+            "label": "Py",
+            "name": "python",
+            "logo": "python",
+            "_id": "6a721e5226ffc49aaed91fc2"
+          },
+          {
+            "label": "C+",
+            "name": "c++",
+            "logo": "cplusplus",
+            "_id": "6a721e5226ffc49aaed91fc3"
+          },
+          {
+            "label": "Vc",
+            "name": "version control",
+            "logo": null,
+            "_id": "6a721e5226ffc49aaed91fc4"
+          }
+        ],
+        "__v": 0
+      },
+      {
+        "_id": "6a721e5226ffc49aaed91fb7",
+        "key": "webDev",
+        "label": "web development",
+        "items": [
+          {
+            "label": "Mo",
+            "name": "mongodb",
+            "logo": "mongodb",
+            "_id": "6a721e5226ffc49aaed91fb8"
+          },
+          {
+            "label": "Ex",
+            "name": "express",
+            "logo": "express",
+            "_id": "6a721e5226ffc49aaed91fb9"
+          },
+          {
+            "label": "Re",
+            "name": "react",
+            "logo": "react",
+            "_id": "6a721e5226ffc49aaed91fba"
+          },
+          {
+            "label": "No",
+            "name": "node.js",
+            "logo": "nodedotjs",
+            "_id": "6a721e5226ffc49aaed91fbb"
+          },
+          {
+            "label": "Pg",
+            "name": "postgresql",
+            "logo": "postgresql",
+            "_id": "6a721e5226ffc49aaed91fbc"
+          },
+          {
+            "label": "My",
+            "name": "mysql",
+            "logo": "mysql",
+            "_id": "6a721e5226ffc49aaed91fbd"
+          },
+          {
+            "label": "Gt",
+            "name": "git",
+            "logo": "git",
+            "_id": "6a721e5226ffc49aaed91fbe"
+          },
+          {
+            "label": "Gh",
+            "name": "github",
+            "logo": "github",
+            "_id": "6a721e5226ffc49aaed91fbf"
+          }
+        ],
+        "__v": 0
+      },
+      {
+        "_id": "6a721e5226ffc49aaed91fcb",
+        "key": "design",
+        "label": "digital design",
+        "items": [
+          {
+            "label": "Fg",
+            "name": "figma",
+            "logo": "figma",
+            "_id": "6a721e5226ffc49aaed91fcc"
+          },
+          {
+            "label": "Cv",
+            "name": "canva",
+            "logo": "canva",
+            "_id": "6a721e5226ffc49aaed91fcd"
+          },
+          {
+            "label": "Fr",
+            "name": "framer",
+            "logo": "framer",
+            "_id": "6a721e5226ffc49aaed91fce"
+          }
+        ],
+        "__v": 0
+      },
+      {
+        "_id": "6a721e5226ffc49aaed91fc5",
+        "key": "aiMl",
+        "label": "ai & ml",
+        "items": [
+          {
+            "label": "Py",
+            "name": "python",
+            "logo": "python",
+            "_id": "6a721e5226ffc49aaed91fc6"
+          },
+          {
+            "label": "Pd",
+            "name": "pandas",
+            "logo": "pandas",
+            "_id": "6a721e5226ffc49aaed91fc7"
+          },
+          {
+            "label": "Np",
+            "name": "numpy",
+            "logo": "numpy",
+            "_id": "6a721e5226ffc49aaed91fc8"
+          },
+          {
+            "label": "Mp",
+            "name": "matplotlib",
+            "logo": "matplotlib",
+            "_id": "6a721e5226ffc49aaed91fc9"
+          },
+          {
+            "label": "Sk",
+            "name": "scikit-learn",
+            "logo": "scikitlearn",
+            "_id": "6a721e5226ffc49aaed91fca"
+          }
+        ],
+        "__v": 0
+      }
+    ]
+  },
+  "certificates": [
+    {
+      "_id": "6a721e5226ffc49aaed91fd0",
+      "certId": "01",
+      "image": null,
+      "category": "webDev",
+      "title": "Full Stack Web Development Bootcamp",
+      "issuer": "Udemy",
+      "year": "2026",
+      "link": "/assets/certificates/Certificate_Udemy_Full-Stack-Dev_Rehan-Fazal.pdf",
+      "__v": 0,
+      "createdAt": "2026-08-04T17:16:02.875Z",
+      "updatedAt": "2026-08-04T17:16:02.875Z"
+    },
+    {
+      "_id": "6a721e5226ffc49aaed91fd1",
+      "certId": "02",
+      "image": "/assets/certificates/HTML_certificate.jpg",
+      "category": "webDev",
+      "title": "HTML Certificate",
+      "issuer": "SoloLearn",
+      "year": "2021",
+      "link": "/assets/certificates/HTML_certificate.jpg",
+      "__v": 0,
+      "createdAt": "2026-08-04T17:16:02.875Z",
+      "updatedAt": "2026-08-04T17:16:02.875Z"
+    },
+    {
+      "_id": "6a721e5226ffc49aaed91fd2",
+      "certId": "03",
+      "image": "/assets/certificates/CSS_certificate.jpg",
+      "category": "webDev",
+      "title": "CSS Certificate",
+      "issuer": "SoloLearn",
+      "year": "2021",
+      "link": "/assets/certificates/CSS_certificate.jpg",
+      "__v": 0,
+      "createdAt": "2026-08-04T17:16:02.875Z",
+      "updatedAt": "2026-08-04T17:16:02.875Z"
+    },
+    {
+      "_id": "6a721e5226ffc49aaed91fd3",
+      "certId": "04",
+      "image": "/assets/certificates/JavaScript_certificate.jpg",
+      "category": "webDev",
+      "title": "JavaScript Certificate",
+      "issuer": "SoloLearn",
+      "year": "2022",
+      "link": "/assets/certificates/JavaScript_certificate.jpg",
+      "__v": 0,
+      "createdAt": "2026-08-04T17:16:02.875Z",
+      "updatedAt": "2026-08-04T17:16:02.875Z"
+    },
+    {
+      "_id": "6a721e5226ffc49aaed91fd4",
+      "certId": "05",
+      "image": "/assets/certificates/Introduction to C++_certificate.jpg",
+      "category": "softwareDev",
+      "title": "Introduction to C++",
+      "issuer": "SoloLearn",
+      "year": "2022",
+      "link": "/assets/certificates/Introduction to C++_certificate.jpg",
+      "__v": 0,
+      "createdAt": "2026-08-04T17:16:02.875Z",
+      "updatedAt": "2026-08-04T17:16:02.875Z"
+    },
+    {
+      "_id": "6a721e5226ffc49aaed91fd5",
+      "certId": "06",
+      "image": null,
+      "category": "softwareDev",
+      "title": "Git Certificate",
+      "issuer": "Great Learning",
+      "year": "2025",
+      "link": "/assets/certificates/certificate git.pdf",
+      "__v": 0,
+      "createdAt": "2026-08-04T17:16:02.875Z",
+      "updatedAt": "2026-08-04T17:16:02.875Z"
+    },
+    {
+      "_id": "6a721e5226ffc49aaed91fd6",
+      "certId": "07",
+      "image": null,
+      "category": "softwareDev",
+      "title": "Git Intermediate",
+      "issuer": "Great Learning",
+      "year": "2025",
+      "link": "/assets/certificates/certificate git intermediate.pdf",
+      "__v": 0,
+      "createdAt": "2026-08-04T17:16:02.875Z",
+      "updatedAt": "2026-08-04T17:16:02.875Z"
+    },
+    {
+      "_id": "6a721e5226ffc49aaed91fd7",
+      "certId": "08",
+      "image": null,
+      "category": "softwareDev",
+      "title": "GitHub Certificate",
+      "issuer": "Great Learning",
+      "year": "2025",
+      "link": "/assets/certificates/certificate github.pdf",
+      "__v": 0,
+      "createdAt": "2026-08-04T17:16:02.875Z",
+      "updatedAt": "2026-08-04T17:16:02.875Z"
+    },
+    {
+      "_id": "6a721e5226ffc49aaed91fd8",
+      "certId": "09",
+      "image": null,
+      "category": "softwareDev",
+      "title": "GitHub Intermediate",
+      "issuer": "Great Learning",
+      "year": "2025",
+      "link": "/assets/certificates/certificate github intermediate.pdf",
+      "__v": 0,
+      "createdAt": "2026-08-04T17:16:02.875Z",
+      "updatedAt": "2026-08-04T17:16:02.875Z"
+    },
+    {
+      "_id": "6a721e5226ffc49aaed91fd9",
+      "certId": "10",
+      "image": null,
+      "category": "softwareDev",
+      "title": "GitHub Foundations",
+      "issuer": "Great Learning",
+      "year": "2025",
+      "link": "/assets/certificates/certificate githubFoundations.pdf",
+      "__v": 0,
+      "createdAt": "2026-08-04T17:16:02.875Z",
+      "updatedAt": "2026-08-04T17:16:02.875Z"
+    },
+    {
+      "_id": "6a721e5226ffc49aaed91fda",
+      "certId": "11",
+      "image": null,
+      "category": "aiMl",
+      "title": "Cloud Computing Certificate",
+      "issuer": "NPTEL / Coursera",
+      "year": "2025",
+      "link": "/assets/certificates/Rehan_Fazal_Cloud_Certificate.pdf",
+      "__v": 0,
+      "createdAt": "2026-08-04T17:16:02.875Z",
+      "updatedAt": "2026-08-04T17:16:02.875Z"
+    },
+    {
+      "_id": "6a721e5226ffc49aaed91fdb",
+      "certId": "12",
+      "image": null,
+      "category": "softwareDev",
+      "title": "IIT Delhi Hackathon — Participant",
+      "issuer": "IIT Delhi",
+      "year": "2025",
+      "link": "/assets/certificates/IITD-hackathon.pdf",
+      "__v": 0,
+      "createdAt": "2026-08-04T17:16:02.875Z",
+      "updatedAt": "2026-08-04T17:16:02.875Z"
+    },
+    {
+      "_id": "6a721e5226ffc49aaed91fdc",
+      "certId": "13",
+      "image": null,
+      "category": "softwareDev",
+      "title": "Smart Campus Hackathon 2026 — National Innovation Challenge",
+      "issuer": "National Innovation Challenge",
+      "year": "2026",
+      "link": "/assets/certificates/Certificate of Participation in Smart Campus Hackathon 2026 – National Innovation Challenge.mht",
+      "__v": 0,
+      "createdAt": "2026-08-04T17:16:02.875Z",
+      "updatedAt": "2026-08-04T17:16:02.875Z"
+    }
+  ],
+  "journey": [
+    {
+      "_id": "6a721e5326ffc49aaed91fdf",
+      "title": "JEE + the CS fundamentals",
+      "desc": "JEE prep alongside Python and SQL as a school subject — basics to intermediate.",
+      "year": "2022",
+      "x": 345,
+      "y": 380,
+      "__v": 0,
+      "createdAt": "2026-08-04T17:16:03.012Z",
+      "updatedAt": "2026-08-04T17:16:03.012Z"
+    },
+    {
+      "_id": "6a721e5326ffc49aaed91fde",
+      "title": "First lines of code",
+      "desc": "Started with SoloLearn — HTML, CSS, and JavaScript, out of pure curiosity.",
+      "year": "2021",
+      "x": 150,
+      "y": 480,
+      "__v": 0,
+      "createdAt": "2026-08-04T17:16:03.012Z",
+      "updatedAt": "2026-08-04T17:16:03.012Z"
+    },
+    {
+      "_id": "6a721e5326ffc49aaed91fe2",
+      "title": "Python + Machine Learning",
+      "desc": "Shifting focus toward Python, ML, and shipping real projects.",
+      "year": "2026",
+      "x": 960,
+      "y": 80,
+      "__v": 0,
+      "createdAt": "2026-08-04T17:16:03.012Z",
+      "updatedAt": "2026-08-04T17:16:03.012Z"
+    },
+    {
+      "_id": "6a721e5326ffc49aaed91fe0",
+      "title": "Computer Engineering begins",
+      "desc": "Started my B.Tech in Computer Engineering, set up GitHub, LinkedIn, and the rest.",
+      "year": "2024",
+      "x": 550,
+      "y": 280,
+      "__v": 0,
+      "createdAt": "2026-08-04T17:16:03.012Z",
+      "updatedAt": "2026-08-04T17:16:03.012Z"
+    },
+    {
+      "_id": "6a721e5326ffc49aaed91fe1",
+      "title": "DSA + MERN",
+      "desc": "Deep into DSA on LeetCode, and building full-stack apps with the MERN stack.",
+      "year": "2025",
+      "x": 755,
+      "y": 180,
+      "__v": 0,
+      "createdAt": "2026-08-04T17:16:03.012Z",
+      "updatedAt": "2026-08-04T17:16:03.012Z"
+    }
+  ],
+  "journeyText": "I started with the MERN stack, shipping full projects end to end. Somewhere along the way, solving algorithmic problems every day became its own habit — and that habit pulled me toward the math and models behind AI/ML. I'm currently splitting my time between DSA practice and learning the fundamentals of machine learning, one problem set and one paper at a time."
+}
