@@ -1,5 +1,25 @@
 import React, { useEffect, useRef } from 'react';
 
+// Rec. 709 luminance — a flat (r+g+b)/3 average reads warm skin tones as
+// darker than they look, which flattens facial detail.
+const LUMA_R = 0.2126;
+const LUMA_G = 0.7152;
+const LUMA_B = 0.0722;
+
+const ALPHA_CUTOFF = 0.35; // ignore the soft anti-aliased fringe of a cut-out
+
+// Module-level so its identity is stable across renders — an inline array
+// literal as the default prop value would be a new object every render,
+// which would retrigger the effect (and restart the assembly animation)
+// on every unrelated parent re-render, e.g. the hero's typewriter tick.
+const DEFAULT_TINT = [232, 228, 220];
+
+function percentile(sorted, p) {
+  if (sorted.length === 0) return 0;
+  const i = Math.min(sorted.length - 1, Math.max(0, Math.round((p / 100) * (sorted.length - 1))));
+  return sorted[i];
+}
+
 export default function PixelPortrait({
   src,
   width = 340,
@@ -7,8 +27,12 @@ export default function PixelPortrait({
   cell = 3,              // smaller = crisper/denser
   alt = '',
   duration = 2200,
-  contrast = 1.6,
-  minDotFraction = 0.22, // floor so dark hair/shadow still shows
+  contrast = 1.55,       // S-curve strength around the midtone
+  minDotFraction = 0.18, // smallest dot, as a fraction of a cell
+  maxDotFraction = 0.76, // largest dot — below 1 so dots never merge into flat white
+  minOpacity = 0.46,     // darkest dot's opacity against the page background
+  maxOpacity = 0.80,     // brightest dot's opacity — kept off full white so it doesn't glare
+  tint = DEFAULT_TINT, // warm off-white instead of pure #fff — softer on a dark bg
 }) {
   const canvasRef = useRef(null);
 
@@ -40,22 +64,66 @@ export default function PixelPortrait({
 
       const { data } = offCtx.getImageData(0, 0, width, height);
 
-      const pixels = [];
-      for (let y = 0; y < height; y += cell) {
-        for (let x = 0; x < width; x += cell) {
-          const i = (y * width + x) * 4;
-          const srcAlpha = data[i + 3] / 255;
-          if (srcAlpha < 0.1) continue;
+      // Pass 1 — average every pixel inside a cell rather than sampling its
+      // top-left corner. Point sampling threw away 15/16 of the source and
+      // made edges noisy.
+      const cells = [];
+      const visible = [];
 
-          let brightness = (data[i] + data[i + 1] + data[i + 2]) / 3 / 255;
-          brightness = Math.pow(brightness, contrast);
+      for (let y = 0; y + cell <= height; y += cell) {
+        for (let x = 0; x + cell <= width; x += cell) {
+          let luma = 0;
+          let alpha = 0;
 
-          const size = Math.max(brightness, minDotFraction) * cell * 0.95;
-          if (size < 0.5) continue;
+          for (let dy = 0; dy < cell; dy++) {
+            for (let dx = 0; dx < cell; dx++) {
+              const i = ((y + dy) * width + (x + dx)) * 4;
+              luma += (LUMA_R * data[i] + LUMA_G * data[i + 1] + LUMA_B * data[i + 2]) / 255;
+              alpha += data[i + 3] / 255;
+            }
+          }
 
-          pixels.push({ tx: x, ty: y, size, brightness, srcAlpha });
+          const n = cell * cell;
+          luma /= n;
+          alpha /= n;
+
+          if (alpha < ALPHA_CUTOFF) continue;
+          cells.push({ tx: x, ty: y, luma, srcAlpha: alpha });
+          visible.push(luma);
         }
       }
+
+      if (cells.length === 0) return;
+
+      // Pass 2 — auto-levels. Stretch the photo's real 2nd..98th percentile
+      // brightness across the full dot-size range, so swapping in a photo with
+      // different lighting still produces a readable portrait instead of one
+      // where most of the face collapses onto the minimum dot size.
+      visible.sort((a, b) => a - b);
+      const lo = percentile(visible, 2);
+      const hi = percentile(visible, 98);
+      const span = Math.max(hi - lo, 1e-6);
+
+      const sizeSpan = maxDotFraction - minDotFraction;
+
+      const pixels = cells.map((c) => {
+        const levelled = Math.min(1, Math.max(0, (c.luma - lo) / span));
+
+        // Contrast around the midpoint, then smoothstep. The old
+        // Math.pow(b, contrast) only ever darkened — every value below 1 gets
+        // smaller when raised to a power above 1 — so it pushed most of the
+        // portrait under the minimum-dot floor instead of adding contrast.
+        const pushed = Math.min(1, Math.max(0, (levelled - 0.5) * contrast + 0.5));
+        const value = pushed * pushed * (3 - 2 * pushed);
+
+        return {
+          tx: c.tx,
+          ty: c.ty,
+          srcAlpha: c.srcAlpha,
+          brightness: value,
+          size: (minDotFraction + value * sizeSpan) * cell,
+        };
+      });
 
       // Scatter start positions — a wide dust field, not just the frame
       const pad = 60;
@@ -67,6 +135,7 @@ export default function PixelPortrait({
 
       const STAGGER_WINDOW = 0.7;
       const PER_PIXEL_MOVE = 900;
+      const half = cell / 2;
       let start = null;
 
       const draw = (t) => {
@@ -86,13 +155,18 @@ export default function PixelPortrait({
           if (progress < 1) stillAnimating = true;
 
           const eased = 1 - Math.pow(1 - progress, 3);
-          const x = p.startX + (p.tx - p.startX) * eased;
-          const y = p.startY + (p.ty - p.startY) * eased;
+          // Centre each dot in its cell so the grid stays even as dots grow.
+          const x = p.startX + (p.tx + half - p.startX) * eased;
+          const y = p.startY + (p.ty + half - p.startY) * eased;
           const size = p.size * eased;
-          const alpha = (0.35 + p.brightness * 0.75) * eased * p.srcAlpha;
+          // Dark dots keep most of their opacity — shrinking them *and*
+          // fading them erased shadow detail twice over. Capped below full
+          // white (maxOpacity) so the brightest dots don't glare against a
+          // dark page background.
+          const alpha = (minOpacity + p.brightness * (maxOpacity - minOpacity)) * eased * p.srcAlpha;
 
           if (size < 0.3) return;
-          ctx.fillStyle = `rgba(255,255,255,${alpha})`;
+          ctx.fillStyle = `rgba(${tint[0]},${tint[1]},${tint[2]},${alpha})`;
           ctx.fillRect(x - size / 2, y - size / 2, size, size);
         });
 
@@ -103,7 +177,7 @@ export default function PixelPortrait({
     };
 
     return () => cancelAnimationFrame(animId);
-  }, [src, width, height, cell, duration, contrast, minDotFraction]);
+  }, [src, width, height, cell, duration, contrast, minDotFraction, maxDotFraction, minOpacity, maxOpacity, tint]);
 
   return (
     <canvas

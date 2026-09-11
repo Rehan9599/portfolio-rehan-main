@@ -120,10 +120,11 @@ export default function HeroBento({ personalInfo, projects = [] }) {
               src={rehanPhoto}
               width={280}
               height={340}
-              cell={4}
-              duration={2200}
-              contrast={1.6}
-              minDotFraction={0.22}
+              cell={2}
+              duration={3800}
+              contrast={1.25}
+              minDotFraction={0.15}
+              maxDotFraction={0.6}
               alt="Portrait of Rehan Fazal"
             />
           </motion.div>
