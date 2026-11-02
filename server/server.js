@@ -52,7 +52,7 @@ app.use(cors({
 app.use(express.json({ limit: '100kb' }));
 
 // Serve static assets (project images, certificates, etc.)
-app.use('/assets', express.static(join(__dirname, '.', 'src', 'assets'), {
+app.use('/assets', express.static(join(__dirname, '..', 'client', 'public', 'assets'), {
   maxAge: '7d'
 }));
 

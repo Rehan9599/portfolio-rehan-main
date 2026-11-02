@@ -13,8 +13,9 @@ const CATEGORIES = [
       { label: 'No', name: 'node.js', logo: 'nodedotjs' },
       { label: 'Pg', name: 'postgresql', logo: 'postgresql' },
       { label: 'My', name: 'mysql', logo: 'mysql' },
-      { label: 'Gt', name: 'git', logo: 'git' },
-      { label: 'Gh', name: 'github', logo: 'github' },
+      { label: 'Nx', name: 'next.js', logo: 'nextdotjs' },
+      { label: 'Ts', name: 'typescript', logo: 'typescript' },
+      { label: 'Rd', name: 'redis', logo: 'redis' },
     ],
   },
   {
@@ -24,6 +25,8 @@ const CATEGORIES = [
       { label: 'Lx', name: 'linux', logo: 'linux' },
       { label: 'Py', name: 'python', logo: 'python' },
       { label: 'C+', name: 'c++', logo: 'cplusplus' },
+      { label: 'Gt', name: 'git', logo: 'git' },
+      { label: 'Gh', name: 'github', logo: 'github' },
       { label: 'Vc', name: 'version control', logo: null },
     ],
   },
@@ -36,6 +39,7 @@ const CATEGORIES = [
       { label: 'Np', name: 'numpy', logo: 'numpy' },
       { label: 'Mp', name: 'matplotlib', logo: 'matplotlib' },
       { label: 'Sk', name: 'scikit-learn', logo: 'scikitlearn' },
+      { label: 'Oc', name: 'opencv', logo: 'opencv' },
     ],
   },
   {

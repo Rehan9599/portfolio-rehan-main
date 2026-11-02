@@ -186,6 +186,7 @@ export default function HeroBento({ personalInfo, projects = [] }) {
                 )}
                 <div className="featured-title">{featuredProject.title}</div>
                 <div className="featured-tags">{featuredProject.tags?.slice(0, 3).join(' · ')}</div>
+                <div className="focus-text">{featuredProject.description}</div>
               </>
             ) : (
               <div className="featured-label">Add a project to feature it here</div>

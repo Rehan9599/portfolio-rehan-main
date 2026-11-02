@@ -6,8 +6,8 @@ const CERT_CATEGORIES = [
   { key: 'all', label: 'all' },
   { key: 'webDev', label: 'web development' },
   { key: 'softwareDev', label: 'software development' },
-  { key: 'python', label: 'python' },
   { key: 'aiMl', label: 'ai & ml' },
+  { key: 'hackathons', label: 'hackathons' },
 ];
 
 const PAGE_SIZE = 4;

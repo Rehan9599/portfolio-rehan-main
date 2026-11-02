@@ -1,13 +1,15 @@
 # rehan.dev — MERN Stack Portfolio
 
-A full-stack, interaction-heavy portfolio built with modern frontend motion patterns, a custom data-driven backend, and clean API architecture.
-live at [rehanfazal.dev](https://rehanfazal.dev)
+A personal portfolio built with modern frontend motion patterns and a small API
+for the contact form. The live site is [rehanfazal.dev](https://rehanfazal.dev).
+The repository contains the portfolio content and assets; it is not a
+general-purpose starter project.
 ## Project Structure
 
 ```
 portfolio/
 ├── client/          # React + Vite frontend
-├── server/          # Express + MongoDB backend
+├── server/          # Express API for contact messages
 └── package.json     # Root orchestration scripts
 ```
 
@@ -20,7 +22,7 @@ portfolio/
 - **Lucide React** iconography and consistent visual language.
 - **TerminalBoot intro + custom cursor trail + interaction audio** for a distinct personal-brand feel.
 - **Axios API layer + custom hooks** (`usePortfolioData`, responsive hooks) for clean data flow.
-- **Snapshot-first data loading** — the site renders from a committed JSON snapshot instantly, then swaps in live API data in the background, so a cold backend never blocks first paint.
+- **Repository-backed data** — portfolio content is committed in `client/src/data/portfolio.json` and assets are committed under `client/public/assets`.
 
 ## Optimistic UI Design System
 
@@ -32,8 +34,7 @@ portfolio/
 ## Backend & Data Stack
 
 - **Node.js + Express 4** API server with modular route design.
-- **MongoDB + Mongoose 8** models for portfolio content, skills, projects, certificates, journey, and contact messages.
-- **Parallelized data fetching** in portfolio API via `Promise.all` for better response performance.
+- **MongoDB + Mongoose 8** for contact messages only.
 - **Nodemailer** integration for contact-form email notifications.
 - **CORS origin allowlist + dotenv configuration** for secure environment handling.
 - **Health endpoint and static asset serving** for reliability and deploy readiness.
@@ -49,15 +50,22 @@ portfolio/
 
 ## Content Workflow
 
-Portfolio content lives in MongoDB and is served by `/api/portfolio`, but the
-front end ships a committed snapshot of that payload so the site is never
-blank while the backend cold-starts.
+Portfolio content lives in the repository at
+`client/src/data/portfolio.json` and is served by both the frontend and
+`/api/portfolio`. MongoDB is only used for contact-form messages, so an Atlas
+outage does not affect the portfolio itself.
 
-```bash
-cd server && npm run seed     # push content changes into MongoDB
-cd client && npm run sync:data # refresh client/src/data/portfolio.json
-git add client/src/data/portfolio.json && git commit
-```
+There is no portfolio seed step. Update the JSON and matching files under
+`client/public/assets`, then deploy the site. Database credentials and contact
+messages remain private server configuration and are not included in this
+repository.
+
+## Development
+
+This is Rehan's live portfolio, not a template intended for other people's
+content. The deployed site is the canonical way to view it. Private server
+environment variables, database access, and contact-message data are required
+for the backend and are intentionally omitted.
 
 ## Environment
 
@@ -66,7 +74,7 @@ git add client/src/data/portfolio.json && git commit
 | Variable | Purpose |
 |----------|---------|
 | `PORT` | Server port (default 5000) |
-| `MONGO_URI` | MongoDB connection string |
+| `MONGO_URI` | MongoDB connection string for contact messages |
 | `SMTP_USER` / `SMTP_PASS` | Gmail app credentials for contact notifications |
 | `SMTP_TO` | Where contact messages are delivered (defaults to `SMTP_USER`) |
 | `ADMIN_TOKEN` | **Required** to read `GET /api/contact`. Without it the route returns 404. |
