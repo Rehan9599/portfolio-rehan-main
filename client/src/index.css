@@ -23,6 +23,55 @@ body {
   color: var(--text);
 }
 
+.particle-wave {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  opacity: 0.22;
+}
+
+.particle-wave:not(.is-active) {
+  visibility: hidden;
+}
+
+.portfolio-app {
+  position: relative;
+  z-index: 1;
+}
+
+.particle-bg-active div {
+  background: transparent !important;
+}
+
+.particle-bg-active .navbar,
+.particle-bg-active .footer-container,
+.particle-bg-active button,
+.particle-bg-active input,
+.particle-bg-active textarea,
+.particle-bg-active select,
+.particle-bg-active .footer-container a {
+  background: transparent !important;
+}
+
+.particle-bg-active .project-card-v3,
+.particle-bg-active .fan-card-left,
+.particle-bg-active .hand-mini-card {
+  background: rgba(11, 11, 11, 0.72) !important;
+  backdrop-filter: blur(8px);
+}
+
+.particle-bg-active .contact-submit:hover {
+  background: var(--accent-hover) !important;
+  color: var(--on-accent) !important;
+  transform: translateY(-2px);
+}
+.particle-bg-active .contact-submit{
+  color: #ffff !important;
+}
+
 .app-container {
   width: 100%;
   max-width: var(--container-max);
@@ -472,7 +521,11 @@ body {
   border: 1px solid var(--border);
   border-radius: var(--radius-full);
   backdrop-filter: blur(12px);
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
 }
+.contact-dock:active { cursor: grabbing; }
 .contact-dock a {
   display: flex; align-items: center; justify-content: center;
   width: 40px; height: 40px; border-radius: 50%;
@@ -2180,9 +2233,20 @@ body {
 .contact-section {
   height: 100%;
   overflow-y: auto;
-  padding: calc(var(--navbar-height) + var(--space-6)) var(--space-8) var(--space-8);
+  padding: calc(var(--navbar-height) + var(--space-6)) var(--space-8) 0;
   display: flex;
-  align-items: center;
+  align-items: stretch;
+}
+
+.contact-section > .app-container {
+  flex: 0 1 auto;
+  width: 100%;
+}
+
+.contact-section > .footer-container {
+  margin-top: auto;
+  margin-bottom: 0;
+  flex-shrink: 0;
 }
 
 .contact-card {
@@ -2259,7 +2323,7 @@ body {
   }
 
   .contact-section{
-    padding: calc(var(--navbar-height)) 0 var(--space-6) 0;
+    padding: calc(var(--navbar-height)) 0 0;
   }
 
   .contact-card{

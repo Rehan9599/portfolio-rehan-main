@@ -15,12 +15,14 @@ import ContactSection from './components/ContactSection';
 import usePortfolioData from './hooks/usePortfolioData';
 import { useIsMobile } from './hooks/useIsMobile';
 import AnimatedBackground from './components/AnimatedBackground';
+import { ParticleWave } from './components/ui/particle-wave';
 
 const SECTION_IDS = ['about', 'projects', 'skills', 'certificates', 'journey', 'contact'];
 
 export default function App() {
   const { data } = usePortfolioData();
   const [bootDone, setBootDone] = useState(() => !shouldPlayBoot());
+  const [animateBackground, setAnimateBackground] = useState(false);
   const isMobile = useIsMobile(900);
 
   if (!bootDone) {
@@ -46,12 +48,17 @@ export default function App() {
   return (
      <SectionScrollProvider sectionIds={SECTION_IDS}>
       <MobilePagerProvider sectionIds={SECTION_IDS}>
-        <div className="portfolio-app">
+        <div className={`portfolio-app ${animateBackground ? 'particle-bg-active' : ''}`}>
+          <ParticleWave enabled={animateBackground} />
           <CursorTrail />
           {/* <AnimatedBackground /> */}
           <GlobalInteractionSound />
           <ContactDock personalInfo={personalInfo} />
-          <Navbar personalInfo={personalInfo} />
+          <Navbar
+            personalInfo={personalInfo}
+            animateBackground={animateBackground}
+            onToggleBackground={() => setAnimateBackground((active) => !active)}
+          />
           <a className="skip-to-content" href="#main-content">Skip to content</a>
           <main id="main-content">
             {isMobile

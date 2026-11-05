@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Mail, Sparkles, Menu, X, Volume2, VolumeX } from 'lucide-react';
+import { Mail, Sparkles, Menu, X, Volume2, VolumeX, Waves } from 'lucide-react';
 import { useSectionScroll } from './SectionScrollContext';
 import { useMobilePager } from './MobileSectionPager';
 import { useIsMobile } from '../hooks/useIsMobile';
 import { useSoundPreference } from '../hooks/useSoundPreference';
 
-export default function Navbar({ personalInfo }) {
+export default function Navbar({ personalInfo, animateBackground, onToggleBackground }) {
    const isMobile = useIsMobile(900);
   const desktopCtx = useSectionScroll();
   const mobileCtx = useMobilePager();
@@ -64,6 +64,16 @@ export default function Navbar({ personalInfo }) {
           title={soundOn ? 'Sound on' : 'Sound off'}
         >
           {soundOn ? <Volume2 size={17} /> : <VolumeX size={17} />}
+        </button>
+
+        <button
+          className="nav-sound-toggle nav-background-toggle"
+          onClick={onToggleBackground}
+          aria-label={animateBackground ? 'Turn animated background off' : 'Turn animated background on'}
+          aria-pressed={animateBackground}
+          title={animateBackground ? 'Animated background on' : 'Animated background off'}
+        >
+          <Waves size={17} />
         </button>
 
         <button
