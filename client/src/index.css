@@ -63,6 +63,10 @@ body {
   backdrop-filter: blur(8px);
 }
 
+.particle-bg-active .hero-bento-grid .bio-expanded{
+  backdrop-filter: blur(0.70px);
+}
+
 .particle-bg-active .contact-submit:hover {
   background: var(--accent-hover) !important;
   color: var(--on-accent) !important;
@@ -267,7 +271,7 @@ body {
 
 /* Full-Width Footer */
 .footer-container {
-  width: 100vw;
+  width: 100%;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   padding: 2.5rem 3.5rem;
   background: rgba(5, 8, 12, 0.95);
@@ -2233,7 +2237,8 @@ body {
 .contact-section {
   height: 100%;
   overflow-y: auto;
-  padding: calc(var(--navbar-height) + var(--space-6)) var(--space-8) 0;
+  flex-direction: column;
+  padding: calc(var(--navbar-height) + var(--space-6)) 0 0;
   display: flex;
   align-items: stretch;
 }

@@ -4,7 +4,7 @@
     "name": "Rehan Fazal",
     "brand": "rehan.dev",
     "terminalUser": "~/rehan-fazal $ whoami",
-    "role": "B.Tech Computer Engineering student — full-stack (MERN) developer, now going deep on DSA and shifting into AI/ML. Along the way, I picked up a real love for web design.",
+    "role": "B.Tech Computer Engineering student, full-stack Developement with MERN, Postgres, TypeScript and NextJs, now going deep on DSA and exploring AI/ML. Along the way, I picked up a real love for web design.",
     "location": "Delhi, India",
     "university": "Jamia Millia Islamia (JMI '28)",
     "github": "https://github.com/Rehan9599",
@@ -310,12 +310,12 @@
     },
     {
       "certId": "03",
-      "title": "Google Cloud",
-      "issuer": "Google Cloud",
+      "title": "MongoDB Associate Developer",
+      "issuer": "MongoDB",
       "year": "2026",
-      "category": "softwareDev",
-      "image": "/assets/certificates/google cloud.png",
-      "link": "/assets/certificates/google cloud.png"
+      "category": "webDev",
+      "image": "/assets/certificates/Associate Developer by MongoDB.png",
+      "link": "/assets/certificates/Associate Developer by MongoDB.png"
     },
     {
       "certId": "04",
@@ -469,6 +469,51 @@
       "category": "hackathons",
       "image": "/assets/certificates/adobe university hackathon.png",
       "link": "/assets/certificates/adobe university hackathon.png"
+    },
+    {
+      "certId": "21",
+      "title": "Google Cloud",
+      "issuer": "Google Cloud",
+      "year": "2026",
+      "category": "softwareDev",
+      "image": "/assets/certificates/google cloud.png",
+      "link": "/assets/certificates/google cloud.png"
+    },
+    {
+      "certId": "22",
+      "title": "CRUD Operations",
+      "issuer": "MongoDB",
+      "year": "2026",
+      "category": "webDev",
+      "image": "/assets/certificates/CRUD operations.png",
+      "link": "/assets/certificates/CRUD operations.png"
+    },
+    {
+      "certId": "23",
+      "title": "Indexing Design",
+      "issuer": "MongoDB",
+      "year": "2026",
+      "category": "webDev",
+      "image": "/assets/certificates/Indexing Design.png",
+      "link": "/assets/certificates/Indexing Design.png"
+    },
+    {
+      "certId": "24",
+      "title": "MongoDB Aggregation",
+      "issuer": "MongoDB",
+      "year": "2026",
+      "category": "webDev",
+      "image": "/assets/certificates/MongoDB Aggregation.png",
+      "link": "/assets/certificates/MongoDB Aggregation.png"
+    },
+    {
+      "certId": "25",
+      "title": "MongoDB with Node.js",
+      "issuer": "MongoDB",
+      "year": "2026",
+      "category": "webDev",
+      "image": "/assets/certificates/MongoDB with Node.png",
+      "link": "/assets/certificates/MongoDB with Node.png"
     }
   ],
   "journey": [
